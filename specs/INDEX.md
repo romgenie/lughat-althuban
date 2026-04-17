@@ -3,8 +3,7 @@
 | ID | Title | Phase | Owner | Status |
 |---|---|---|---|---|
 | 0000 | Template (do not implement) | — | — | reference |
-
-*No active packets yet. Phase A packets land here as they're authored.*
+| 0001 | dictionary-v1 | A | Claude | delivered (pending review) |
 
 ## Legend
 
