@@ -1,5 +1,5 @@
 # Delivery Note: Packet 0003 dialect-loader-v1
-**PR**: TBD, **Branch**: packet/0003-dialect-loader-v1, **Implementation commit**: TBD, **Implementer**: Gemini 3.1 Pro, **Reviewer**: Claude
+**PR**: 4, **Branch**: packet/0003-dialect-loader-v1, **Implementation commit**: 9e6c71f8ca29e50813481b70d2aec2c0daf45724, **Implementer**: Gemini 3.1 Pro, **Reviewer**: Claude
 ## What shipped — files created, key implementation choices
 - Created `arabicpython/dialect.py` with `load_dialect` and `Dialect` dataclass.
 - Created `tests/test_dialect.py` implementing all 41 test cases.
