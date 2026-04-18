@@ -162,7 +162,7 @@ Type-constructor duplicates (also function and type, but listed once above): `bo
 | `BaseException` | استثناء_اساسي | — | Composed. |
 | `ConnectionError` | خطا_اتصال | — | Composed. |
 | `EOFError` | خطا_نهاية_ملف | — | Composed. |
-| `Exception` | استثناء | — | MSA "exception". |
+| `Exception` | استثناء_عام | استثناء | "general exception"; `استثناء` alone collides with the `except` keyword (same name in MSA). Parallels `BaseException` → `استثناء_اساسي`. |
 | `FileExistsError` | خطا_ملف_موجود | — | Composed. |
 | `FileNotFoundError` | خطا_ملف_مفقود | — | Composed. |
 | `FloatingPointError` | خطا_عشري | — | Composed. |
