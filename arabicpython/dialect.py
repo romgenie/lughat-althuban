@@ -117,13 +117,10 @@ def load_dialect(name: str = "ar-v1", *, path: "Path | None" = None) -> Dialect:
         if normalized in target_map:
             existing_symbol = target_map[normalized]
             if existing_symbol != python_symbol:
-                if {existing_symbol, python_symbol} == {"except", "Exception"}:
-                    pass  # Explicit bypass for known collision in ar-v1.md
-                else:
-                    raise DialectError(
-                        f"Line {i}: Normalized key '{normalized}' maps to different "
-                        f"Python symbols: '{existing_symbol}' and '{python_symbol}'"
-                    )
+                raise DialectError(
+                    f"Line {i}: Normalized key '{normalized}' maps to different "
+                    f"Python symbols: '{existing_symbol}' and '{python_symbol}'"
+                )
 
         if python_symbol in reverse_map:
             existing_canonical = reverse_map[python_symbol]
