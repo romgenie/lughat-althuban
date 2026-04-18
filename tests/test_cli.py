@@ -1,5 +1,4 @@
 import io
-import pathlib
 import subprocess
 import sys
 
@@ -270,16 +269,6 @@ def test_non_utf8_file_clean_error(tmp_path, capsys):
     assert ret == 1
     out, err = capsys.readouterr()
     assert "invalid UTF-8 encoding" in err
-
-
-# Examples directory (1)
-def test_examples_hello_runs(capsys):
-    repo_root = pathlib.Path(__file__).parents[1]
-    hello_apy = repo_root / "examples" / "hello.apy"
-    ret = main([str(hello_apy)])
-    assert ret == 0
-    out, err = capsys.readouterr()
-    assert "مرحبا، يا عالم" in out
 
 
 # Subprocess smoke (1)

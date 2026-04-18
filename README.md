@@ -108,7 +108,7 @@ apython/
 ├── specs/            Spec packets handed off to the implementer
 ├── arabicpython/     The transpiler package
 ├── tests/            pytest suite (316 tests as of Phase A wrap)
-└── examples/         Runnable .apy programs (forthcoming)
+└── examples/         Runnable .apy programs (7 progressive demos)
 ```
 
 ## Architecture in one paragraph
