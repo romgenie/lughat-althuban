@@ -1,12 +1,22 @@
 """apython CLI runner."""
 
 import argparse
+import contextlib
 import os
 import sys
 import types
 
 from arabicpython import __version__
 from arabicpython.translate import translate
+
+
+def _configure_utf8_streams() -> None:
+    # Default Windows stdout codec is cp1252; can't encode Arabic. Reconfigure
+    # to UTF-8 so print(...) of Arabic strings doesn't raise UnicodeEncodeError.
+    for stream in (sys.stdout, sys.stderr):
+        if stream is not None and hasattr(stream, "reconfigure"):
+            with contextlib.suppress(AttributeError, OSError, ValueError):
+                stream.reconfigure(encoding="utf-8")
 
 
 def main(argv: "list[str] | None" = None) -> int:
@@ -23,6 +33,7 @@ def main(argv: "list[str] | None" = None) -> int:
     from arabicpython.import_hook import install
     from arabicpython.tracebacks import install_excepthook, print_translated_exception
 
+    _configure_utf8_streams()
     install()
     install_excepthook()
 

@@ -293,3 +293,41 @@ def test_subprocess_end_to_end():
     )
     assert res.returncode == 0
     assert "ok" in res.stdout
+
+
+# UTF-8 stream configuration (4)
+def test_configure_utf8_reconfigures_stdout(monkeypatch):
+    from arabicpython.cli import _configure_utf8_streams
+
+    buf = io.BytesIO()
+    fake = io.TextIOWrapper(buf, encoding="cp1252")
+    monkeypatch.setattr(sys, "stdout", fake)
+    _configure_utf8_streams()
+    assert sys.stdout.encoding.lower().replace("-", "") == "utf8"
+
+
+def test_configure_utf8_safe_with_non_reconfigurable_stream(monkeypatch):
+    from arabicpython.cli import _configure_utf8_streams
+
+    monkeypatch.setattr(sys, "stdout", io.StringIO())
+    monkeypatch.setattr(sys, "stderr", io.StringIO())
+    _configure_utf8_streams()  # must not raise
+
+
+def test_configure_utf8_safe_with_none_stream(monkeypatch):
+    from arabicpython.cli import _configure_utf8_streams
+
+    monkeypatch.setattr(sys, "stdout", None)
+    _configure_utf8_streams()  # must not raise
+
+
+def test_main_recovers_from_cp1252_stdout(tmp_path, monkeypatch):
+    f = tmp_path / "h.apy"
+    f.write_text('اطبع("مرحبا")\n', encoding="utf-8")
+    buf = io.BytesIO()
+    fake = io.TextIOWrapper(buf, encoding="cp1252", write_through=True)
+    monkeypatch.setattr(sys, "stdout", fake)
+    rc = main([str(f)])
+    fake.flush()
+    assert rc == 0
+    assert "مرحبا" in buf.getvalue().decode("utf-8")
