@@ -3,7 +3,6 @@
 import argparse
 import os
 import sys
-import traceback
 import types
 
 from arabicpython import __version__
@@ -22,8 +21,10 @@ def main(argv: "list[str] | None" = None) -> int:
         2 on usage errors (mirrors argparse convention).
     """
     from arabicpython.import_hook import install
+    from arabicpython.tracebacks import install_excepthook, print_translated_exception
 
     install()
+    install_excepthook()
 
     if argv is None:
         argv = sys.argv[1:]
@@ -117,25 +118,21 @@ def main(argv: "list[str] | None" = None) -> int:
     # Step 1 & 2 & 3: translate
     try:
         translated = translate(source)
-    except SyntaxError as e:
-        # Format: File "{path}", line L: {msg}
-        loc = ""
-        if e.lineno is not None:
-            loc = f'File "{original_path}", line {e.lineno}: '
-        sys.stderr.write(f"{loc}{e.msg}\n")
+    except SyntaxError:
+        print_translated_exception(*sys.exc_info())
         return 1
     except Exception:
-        traceback.print_exc()
+        print_translated_exception(*sys.exc_info())
         return 1
 
     # Step 4: compile
     try:
         code_obj = compile(translated, original_path, "exec")
     except SyntaxError:
-        traceback.print_exc()
+        print_translated_exception(*sys.exc_info())
         return 1
     except Exception:
-        traceback.print_exc()
+        print_translated_exception(*sys.exc_info())
         return 1
 
     # Step 5: execute
@@ -167,7 +164,7 @@ def main(argv: "list[str] | None" = None) -> int:
         sys.stderr.write("KeyboardInterrupt\n")
         return 130
     except Exception:
-        traceback.print_exc()
+        print_translated_exception(*sys.exc_info())
         return 1
     finally:
         sys.argv = old_argv

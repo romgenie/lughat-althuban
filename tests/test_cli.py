@@ -214,7 +214,7 @@ def test_translated_python_syntax_error(tmp_path, capsys):
     ret = main([str(f)])
     assert ret == 1
     out, err = capsys.readouterr()
-    assert "SyntaxError" in err or "Traceback" in err
+    assert "خطا" in err or "تتبع_الأخطاء" in err
 
 
 def test_runtime_exception_prints_traceback(tmp_path, capsys):
@@ -223,8 +223,8 @@ def test_runtime_exception_prints_traceback(tmp_path, capsys):
     ret = main([str(f)])
     assert ret == 1
     out, err = capsys.readouterr()
-    assert "ZeroDivisionError" in err
-    assert "Traceback" in err
+    assert "خطا_القسمه_على_صفر" in err
+    assert "تتبع_الأخطاء" in err
 
 
 # sys.exit and KeyboardInterrupt (3)

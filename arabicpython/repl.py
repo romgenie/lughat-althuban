@@ -53,6 +53,17 @@ class ArabicConsole(_code_module.InteractiveConsole):
         self.write(f'  File "{filename}", line {e.lineno or 1}\n')
         self.write(f"    {e.msg}\n")
 
+    def showtraceback(self) -> None:
+        from arabicpython.tracebacks import print_translated_exception
+
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        # Trim the top frame which is the InteractiveConsole's exec call;
+        # we only want frames inside user code. Match what the parent's
+        # showtraceback does — it strips its own frame.
+        if exc_tb is not None:
+            exc_tb = exc_tb.tb_next
+        print_translated_exception(exc_type, exc_value, exc_tb, file=self)
+
 
 def _is_incomplete_marker(e: SyntaxError) -> bool:
     """Check if a SyntaxError msg indicates incomplete input."""

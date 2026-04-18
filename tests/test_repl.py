@@ -139,23 +139,24 @@ def test_zero_division_shows_traceback(console):
     ret = console.runsource("١/٠")
     assert ret is False
     err_text = console._test_err.getvalue()
-    assert "ZeroDivisionError" in err_text
-    assert "Traceback" in err_text
+    assert "خطا_القسمه_على_صفر" in err_text
+    assert "تتبع_الأخطاء" in err_text
 
 
 def test_name_error_shows_traceback(console):
     ret = console.runsource("undefined_name")
     assert ret is False
     err_text = console._test_err.getvalue()
-    assert "NameError" in err_text
-    assert "Traceback" in err_text
+    assert "خطا_اسم" in err_text
+    assert "تتبع_الأخطاء" in err_text
 
 
 def test_runtime_error_does_not_clear_state(console, capsys):
     console.runsource("س = ٤٢")
     console.runsource("١/٠")
+    # State should be preserved
     console.runsource("اطبع(س)")
-    out, err = capsys.readouterr()
+    out, _ = capsys.readouterr()
     assert "42\n" in out
 
 
@@ -281,4 +282,4 @@ def test_keyboard_interrupt_does_not_exit_repl(console, capsys):
     ret = console.runsource("raise KeyboardInterrupt")
     assert ret is False
     err_text = console._test_err.getvalue()
-    assert "KeyboardInterrupt" in err_text
+    assert "مقاطعه_لوحه_المفاتيح" in err_text
