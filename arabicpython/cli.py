@@ -109,8 +109,10 @@ def main(argv: "list[str] | None" = None) -> int:
                 sys.stderr.write(f"apython: can't open file '{file_path}': {e}\n")
                 return 1
     else:
-        parser.print_usage(sys.stderr)
-        return 2
+        # No FILE, no -c, no '-': drop into the REPL.
+        from arabicpython.repl import run_repl
+
+        return run_repl()
 
     # Step 1 & 2 & 3: translate
     try:

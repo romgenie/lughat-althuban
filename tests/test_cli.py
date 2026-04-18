@@ -28,11 +28,22 @@ def test_version_flag_prints_version(capsys):
     assert f"apython {__version__}" in out or f"apython {__version__}" in err
 
 
-def test_no_args_prints_usage_exits_two(capsys):
+def test_cli_no_args_drops_into_repl(monkeypatch, capsys):
+    """main([]) drops into REPL; we feed an immediate EOF to exit cleanly."""
+    monkeypatch.setattr("sys.stdin", io.StringIO(""))
     ret = main([])
-    assert ret == 2
+    assert ret == 0
     out, err = capsys.readouterr()
-    assert "usage:" in err
+    assert "apython" in out or "apython" in err
+
+
+def test_cli_repl_executes_piped_arabic(monkeypatch, capsys):
+    """Pipe an Arabic command into apython with no args; it should run and exit."""
+    monkeypatch.setattr("sys.stdin", io.StringIO("اطبع('cli_repl')\n"))
+    ret = main([])
+    assert ret == 0
+    out, err = capsys.readouterr()
+    assert "cli_repl" in out
 
 
 # File mode — golden path (5)

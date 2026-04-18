@@ -8,3 +8,4 @@ __version__ = "0.0.1"
 
 from arabicpython.import_hook import install as install  # noqa: E402
 from arabicpython.import_hook import uninstall as uninstall
+from arabicpython.repl import run_repl as run_repl  # noqa: E402
