@@ -21,6 +21,10 @@ def main(argv: "list[str] | None" = None) -> int:
         Exit code: 0 on success, 1 on translate/compile/runtime errors,
         2 on usage errors (mirrors argparse convention).
     """
+    from arabicpython.import_hook import install
+
+    install()
+
     if argv is None:
         argv = sys.argv[1:]
 

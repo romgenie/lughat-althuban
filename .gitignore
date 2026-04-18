@@ -68,3 +68,6 @@ Thumbs.db
 *.apyc
 .apython-cache/
 .aider*
+
+# Local PR-body scratch files used by gh pr create
+pr_body*.txt

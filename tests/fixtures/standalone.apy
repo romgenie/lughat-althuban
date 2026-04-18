@@ -1,0 +1,5 @@
+# Fixture standalone module
+قيمة = ٤٢
+
+دالة هات_القيمة():
+    ارجع قيمة

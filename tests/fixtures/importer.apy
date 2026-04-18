@@ -1,0 +1,5 @@
+# Fixture for cross-import test
+من standalone استورد قيمة
+
+دالة هات_قيمة_مستوردة():
+    ارجع قيمة

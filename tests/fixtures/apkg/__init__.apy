@@ -1,0 +1,4 @@
+# Fixture package
+import apkg.sub as sub
+
+قائمة_عناصر = [١, ٢, ٣]
