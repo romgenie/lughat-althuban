@@ -11,7 +11,7 @@
 | 0006 | cli-v1 | A | Gemini 3.1 Pro | merged |
 | 0007 | import-hook-v1 | A | Gemini 3.1 Flash | merged |
 | 0008 | repl-v1 | A | Gemini 3.1 Flash | merged |
-| 0009 | translated-tracebacks-v1 | A | Gemini 3.1 Flash | drafted |
+| 0009 | translated-tracebacks-v1 | A | Gemini 3.1 Pro | merged |
 
 ## Legend
 

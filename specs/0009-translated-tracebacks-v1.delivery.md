@@ -40,3 +40,19 @@
 ## Open questions for the planner — anything ambiguous in the spec
 
 None. The spec's requirement for both "verbatim copy" and "normalized values" for exception names was a slight conflict, which I resolved by prioritizing the project's normalization convention for names.
+
+## Planner addendum (2026-04-19, post-merge)
+
+Merged as squash commit [`1adf430`](https://github.com/GalaxyRuler/apython/commit/1adf430). 9-of-9 CI green on the rerun (initial run was billing-blocked, not a code failure).
+
+**Spec defect acknowledged.** The spec gave the Arabic exception names with full orthography (hamzas, ta marbuta, alef variants — e.g., `خطأ_القسمة_على_صفر`) but also asserted `test_table_arabic_names_are_normalized` which requires every value in `EXCEPTION_NAMES_AR` to round-trip through `normalize_identifier` unchanged. The two are mutually exclusive — normalization strips hamza, folds `ة → ه`, etc. Gemini correctly resolved by writing the *normalized* forms into the table (`خطا_القسمه_على_صفر`, `خطا_اسم`, etc.) and called this out as a deviation. That is the right call: tables that participate in identifier rewriting must be in normalized form per ADR 0004, otherwise `apython` code that catches `خطأ_القسمة_على_صفر` would never match the runtime class name (which is itself normalized). The spec text should have specified normalized strings; the test was the source of truth.
+
+The display-only header `تتبع_الأخطاء (المكدس الأحدث آخرا):` was correctly kept un-normalized — it's printed text, not an identifier. Same logic for `<الوحدة>`.
+
+**Phase A status: 9 of 9 packets merged. Phase A is complete.** The full learner stack works end-to-end: write `.apy` files, import them from each other, run via `apython script.apy` / `apython -c '...'` / stdin / bare REPL, and uncaught exceptions print Arabic tracebacks with translated type names and ~30 common interpreter messages.
+
+Two known gaps documented earlier still apply, neither blocking Phase A:
+- `from . import x` doesn't translate (Packet 0007 addendum) — defer to a future "translate-fixups" packet.
+- Cross-language attribute access from `.py` requires the normalized identifier form (Packet 0007 addendum) — documentation gap, not a code bug.
+
+Next planner work is no longer a core packet — it's a Phase A wrap (tutorial, README polish, dictionary review) before opening the Phase B charter.
