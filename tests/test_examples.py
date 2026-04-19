@@ -44,7 +44,7 @@ def test_05_data_structures_runs(capsys):
     path = repo_root / "examples" / "05_data_structures.apy"
     assert main([str(path)]) == 0
     out, _ = capsys.readouterr()
-    expected = "تفاح السعر: 3\n" "موز السعر: 2\n" "برتقال السعر: 4\n"
+    expected = "تفاح: 3 ريال\n" "موز: 2 ريال\n" "برتقال: 4 ريال\n"
     assert out == expected
 
 

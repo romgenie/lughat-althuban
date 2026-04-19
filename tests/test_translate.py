@@ -380,7 +380,7 @@ def test_program_for_loop_with_range():
     assert ns["total"] == 10
 
 
-# F-string handling (2)
+# F-string handling (5)
 def test_fstring_text_preserved():
     src = 'f"hello {x}"\n'
     res = translate(src)
@@ -394,6 +394,41 @@ def test_fstring_arabic_expr_312_plus_translates():
     src = 'f"{اطبع}"\n'
     res = translate(src)
     assert "print" in res
+
+
+def test_translate_fstring_arabic_expr_on_311():
+    # Renamed/new; no skipif. Tests that f-strings translate on any version.
+    res = translate('x = 1\nاطبع(f"{x}")\n')
+    assert "print" in res
+    compile(res, "<test>", "exec")
+
+
+def test_translate_fstring_arabic_identifier_normalized_on_311():
+    # فاكهة = 1
+    # print(f"{فاكهة}")
+    # both should normalize to فاكهه
+    src = 'فاكهة = 1\nاطبع(f"{فاكهة}")\n'
+    res = translate(src)
+    assert "فاكهه = 1" in res
+    assert "{فاكهه}" in res
+    ns = {}
+    exec(compile(res, "<test>", "exec"), ns)
+
+
+def test_translate_fstring_subscript_regression_packet_0010(capsys):
+    # The exact program from examples/05_data_structures.apy
+    src = """# القوائم والقواميس
+الفواكه = ["تفاح", "موز", "برتقال"]
+الأسعار = {"تفاح": 3, "موز": 2, "برتقال": 4}
+
+لكل فاكهة في الفواكه:
+    اطبع(f"{فاكهة}: {الأسعار[فاكهة]} ريال")
+"""
+    res = translate(src)
+    exec(compile(res, "<test>", "exec"), {})
+    out, _ = capsys.readouterr()
+    expected = "تفاح: 3 ريال\nموز: 2 ريال\nبرتقال: 4 ريال\n"
+    assert out == expected
 
 
 # Whitespace and structure preservation (3)

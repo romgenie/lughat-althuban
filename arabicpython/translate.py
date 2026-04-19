@@ -1,9 +1,11 @@
 """Translate apython source to Python source."""
 
 import io
+import sys
 import tokenize
 from typing import TYPE_CHECKING
 
+from arabicpython._fstring_311 import rewrite_fstring_literal
 from arabicpython.dialect import load_dialect
 from arabicpython.normalize import normalize_identifier
 from arabicpython.pretokenize import pretokenize
@@ -99,6 +101,16 @@ def translate(source: str, *, dialect: "Dialect | None" = None) -> str:
             else:
                 new_tokens.append(
                     tokenize.TokenInfo(tokenize.NAME, new_string, tok.start, tok.end, tok.line)
+                )
+        elif tok.type == tokenize.STRING and sys.version_info < (3, 12):
+            # TODO(phase-b-drop-311): delete this branch and rewrite_fstring_literal
+            # when 3.11 support is dropped.
+            new_literal = rewrite_fstring_literal(tok.string, dialect)
+            if new_literal == tok.string:
+                new_tokens.append(tok)
+            else:
+                new_tokens.append(
+                    tokenize.TokenInfo(tokenize.STRING, new_literal, tok.start, tok.end, tok.line)
                 )
         else:
             new_tokens.append(tok)
