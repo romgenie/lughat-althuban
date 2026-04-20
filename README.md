@@ -1,3 +1,69 @@
+<div dir="rtl">
+
+# apython — بايثون بالعربية
+
+لهجة برمجية تكتب فيها الكلمات المفتاحية والدوال المدمجة والاستثناءات بالعربية. ملفات `.apy` تُترجم إلى بايثون القياسي في وقت التحميل وتُنفَّذ بواسطة CPython — دون تشعيب للمترجم ودون تعديل على اللغة.
+
+## مثال سريع
+
+```python
+# hello.apy
+دالة مرحبا(اسم):
+    اطبع(f"مرحبا يا {اسم}")
+
+لكل شخص في ["سارة", "أحمد", "ليلى"]:
+    مرحبا(شخص)
+```
+
+```bash
+$ apython hello.apy
+مرحبا يا سارة
+مرحبا يا أحمد
+مرحبا يا ليلى
+```
+
+## التثبيت
+
+يتطلب Python 3.11 أو أحدث:
+
+```bash
+git clone https://github.com/GalaxyRuler/apython
+cd apython
+pip install -e .
+```
+
+## تشغيل الشيفرة
+
+```bash
+apython ملف.apy            # تشغيل ملف
+apython -c 'اطبع("مرحبا")' # تنفيذ سطر مباشرةً
+apython - < ملف.apy        # قراءة من المدخل القياسي
+apython                     # البيئة التفاعلية REPL
+```
+
+## رسائل الخطأ بالعربية
+
+```bash
+$ apython -c '1 / 0'
+تتبع_الأخطاء (المكدس الأحدث آخرا):
+  ملف "<string>", سطر 1, في <الوحدة>
+خطأ_قسمة_صفر: القسمة على صفر
+```
+
+## الوثائق بالعربية
+
+| الوثيقة | الوصف |
+|---------|--------|
+| [دليل البدء الشامل](docs/ar/getting-started.md) | من "مرحبا بالعالم" إلى الاستيراد — خطوة بخطوة |
+| [نظرة عامة على المشروع](docs/ar/README.md) | المعمارية، هيكل المشروع، خارطة الطريق |
+| [الأمثلة التعليمية](examples/README-ar.md) | شرح الأمثلة السبعة التصاعدية |
+| [سجل التغييرات](docs/ar/CHANGELOG.md) | ما الذي تغيّر في كل إصدار |
+| [قاموس الكلمات المفتاحية](dictionaries/ar-v1.md) | المرجع الكامل لكل الكلمات المفتاحية والدوال |
+
+</div>
+
+---
+
 # apython — Arabic Python
 
 A Python dialect where keywords, built-ins, and exceptions are written in Arabic. `.apy` files are translated to standard Python at load time and executed by CPython — no interpreter fork.
@@ -9,7 +75,7 @@ A Python dialect where keywords, built-ins, and exceptions are written in Arabic
 
 ## Quick example
 
-```arabic
+```python
 # hello.apy
 دالة مرحبا(اسم):
     اطبع(f"مرحبا يا {اسم}")
@@ -52,13 +118,13 @@ apython                          # interactive REPL
 
 The package installs a `sys.meta_path` import hook so `.apy` files can be imported like any Python module:
 
-```arabic
+```python
 # main.apy
 استورد helper
 helper.مرحبا("عالم")
 ```
 
-```arabic
+```python
 # helper.apy
 دالة مرحبا(اسم):
     اطبع(f"مرحبا يا {اسم}")
@@ -107,7 +173,7 @@ apython/
 ├── dictionaries/     ar-v1.md (keywords/built-ins) + exceptions-ar-v1.md
 ├── specs/            Spec packets handed off to the implementer
 ├── arabicpython/     The transpiler package
-├── tests/            pytest suite (336 passing + 21 intentional skips)
+├── tests/            pytest suite (351 passing + 21 intentional skips)
 └── examples/         Runnable .apy programs (7 progressive demos)
 ```
 
