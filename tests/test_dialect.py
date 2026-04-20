@@ -34,12 +34,12 @@ def test_name_attribute():
 # Group: Entry counts
 def test_total_entry_count():
     d = load_dialect("ar-v1")
-    assert len(d.names) + len(d.attributes) >= 150
+    assert len(d.names) + len(d.attributes) >= 187
 
 
 def test_attributes_nonempty():
     d = load_dialect("ar-v1")
-    assert len(d.attributes) >= 25
+    assert len(d.attributes) >= 42
 
 
 def test_names_nonempty():
@@ -282,3 +282,84 @@ def test_all_python_targets_are_identifiers():
         assert not keyword.iskeyword(
             py_sym
         ), f"'{py_sym}' is a Python keyword but used as attribute"
+
+
+# Group: v1.1 additions (Category C — no ADR required per ADR 0003)
+
+def test_builtin_breakpoint():
+    d = load_dialect("ar-v1")
+    assert d.names[normalize_identifier("نقطة_توقف")] == "breakpoint"
+
+
+# Set methods
+def test_method_set_add():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("ضم")] == "add"
+
+
+def test_method_set_discard():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("أسقط")] == "discard"
+
+
+def test_method_set_union():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("اتحاد")] == "union"
+
+
+def test_method_set_intersection():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("تقاطع")] == "intersection"
+
+
+def test_method_set_difference():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("فرق")] == "difference"
+
+
+# String methods (new)
+def test_method_str_title():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("عنوان")] == "title"
+
+
+def test_method_str_capitalize():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("كبر_الأول")] == "capitalize"
+
+
+def test_method_str_swapcase():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("عكس_الحالة")] == "swapcase"
+
+
+def test_method_str_zfill():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("مل_بأصفار")] == "zfill"
+
+
+def test_method_str_center():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("توسط")] == "center"
+
+
+def test_method_str_ljust():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("ضبط_يسار")] == "ljust"
+
+
+def test_method_str_rjust():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("ضبط_يمين")] == "rjust"
+
+
+# Dict methods (new)
+def test_method_dict_popitem():
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("انتزع_زوج")] == "popitem"
+
+
+def test_method_dict_pop_via_existing_mapping():
+    # dict.pop and list.pop share the Python name "pop"; انتزع already covers both
+    d = load_dialect("ar-v1")
+    assert d.attributes[normalize_identifier("انتزع")] == "pop"

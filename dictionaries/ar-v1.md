@@ -103,6 +103,7 @@ Multi-word translations use underscore `_` rather than space, because Python tok
 | `any` | أي | — | MSA "any"; normalizer folds hamza to give stored key `اي` per ADR 0004. |
 | `ascii` | أيسكي | — | Transliteration. |
 | `bin` | ثنائي | — | MSA "binary". |
+| `breakpoint` | نقطة_توقف | — | Composed: "stopping point"; matches the debugger metaphor. |
 | `callable` | قابل_للاستدعاء | — | MSA "callable". |
 | `chr` | رمز | حرف | MSA "symbol"; `.ord` counterpart is قيمة_رمز. |
 | `classmethod` | تابع_صنف | — | Composed: "method of class". |
@@ -216,8 +217,15 @@ Methods are stored without the leading dot in the machine-readable dictionary. T
 | `.replace` | استبدل | — | MSA "replace". |
 | `.split` | قسم | — | MSA "split/divide". |
 | `.startswith` | يبدأ_بـ | — | Composed: "starts with". |
+| `.capitalize` | كبر_الأول | — | Composed: "capitalize the first (letter)". |
+| `.center` | توسط | — | MSA "be in the center"; pads to center the string. |
+| `.ljust` | ضبط_يسار | — | Composed: "left-align". |
+| `.rjust` | ضبط_يمين | — | Composed: "right-align". |
 | `.strip` | جرد | نظف | MSA "strip". |
+| `.swapcase` | عكس_الحالة | — | Composed: "reverse/swap case". |
+| `.title` | عنوان | — | MSA "title/heading"; title-cases every word. |
 | `.upper` | كبير | — | MSA "big/uppercase". |
+| `.zfill` | مل_بأصفار | — | Composed: "fill with zeros". |
 
 ### List methods
 
@@ -239,9 +247,23 @@ Methods are stored without the leading dot in the machine-readable dictionary. T
 | `.get` | اجلب | — | MSA "fetch". |
 | `.items` | عناصر | — | MSA "items/elements". |
 | `.keys` | مفاتيح | — | MSA "keys". |
+| `.pop` | انتزع | — | Same Python name as list `.pop`; the existing `انتزع → pop` mapping covers dicts automatically. No new entry needed — documented here for completeness. |
+| `.popitem` | انتزع_زوج | — | Composed: "extract a pair" (dict items are key-value pairs). |
 | `.setdefault` | عين_افتراضي | — | Composed. |
 | `.update` | حدث | — | MSA "update". |
 | `.values` | قيم_القاموس | قيم | Composed; `قيم` alone would collide with `eval`. See collision audit. |
+
+### Set methods
+
+`.remove`, `.clear`, and `.copy` already work on sets via the list and generic method mappings above (same Python names, same Arabic translations).
+
+| Python | Canonical | Alternates | Rationale |
+|---|---|---|---|
+| `.add` | ضم | — | MSA "include/incorporate"; distinct from `اضف` (list `.append`) to avoid attribute collision. |
+| `.difference` | فرق | — | MSA mathematical "difference" (A minus B). |
+| `.discard` | أسقط | — | MSA "drop/set aside"; like `.remove` but no error if element absent. |
+| `.intersection` | تقاطع | — | MSA mathematical "intersection". |
+| `.union` | اتحاد | — | MSA mathematical "union". |
 
 ### Generic methods (on multiple types)
 
@@ -277,26 +299,31 @@ The loader reads only the tables; this audit section is historical documentation
 ## Counts
 
 These match what `dialect.load_dialect("ar-v1")` reports at runtime
-(`names: 144, attributes: 29, total: 173`).
+(`names: 145, attributes: 42, total: 187`).
 
 - Hard keywords: 32 (Python 3.13's `keyword.kwlist` minus `True`/`False`/`None`, which live in *Literals* below)
 - Soft keywords: 4 (`match`, `case`, `type`, `_`)
 - Literals: 3 (`True`, `False`, `None`)
 - Built-in types: 15
-- Built-in functions: 51 (unique; excludes type-constructor duplicates)
+- Built-in functions: 52 (unique; excludes type-constructor duplicates; includes `breakpoint` added in v1.1)
 - Built-in exceptions: 40
-- Subtotal (names): **144** — sums to 145 by section, minus 1 for the `type` soft-keyword / `type` built-in-type dedup (both map to `نوع`, stored once in `dialect.names`)
-- Methods (attributes): 29
-- **Total entries: 173**
+- Subtotal (names): **145** — sums to 146 by section, minus 1 for the `type` soft-keyword / `type` built-in-type dedup (both map to `نوع`, stored once in `dialect.names`)
+- Methods (attributes): 42 (29 original + 7 new string methods + 5 new set methods + 1 new dict method)
+- **Total entries: 187**
 
-## Known omissions (v1.1 and later)
+*Note: dict `.pop` is not counted as a new attribute — it resolves via the existing `انتزع → pop` mapping shared with list `.pop`.*
+
+## Known omissions
 
 - `yield from` — compound keyword, needs multi-token handling.
 - `async for`, `async with` — compounds.
 - `pattern matching` class patterns — limited use in beginner code.
+- `aiter`, `anext` — async iterator builtins (3.10+); deferred to Phase B.
 - Dunder methods (`__init__`, `__str__`, etc.) — Phase B aliasing concern.
 - `self`, `cls` — naming conventions, not syntax.
 - Stdlib module-level functions (`os.path.join`, `math.sqrt`, etc.) — Phase B.
+- Set methods `.issubset`, `.issuperset`, `.symmetric_difference` — advanced; deferred to ar-v2.
+- String methods `.encode`, `.format_map`, `.maketrans`, `.translate` — advanced; deferred to ar-v2.
 
 ## References
 
