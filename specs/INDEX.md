@@ -14,7 +14,7 @@
 | 0009 | translated-tracebacks-v1 | A | Gemini 3.1 Pro | merged |
 | 0010 | examples-v1 | A (wrap) | Gemini 3.1 Pro | merged |
 | 0011 | fstring-interior-3-11 | A (post-wrap fix) | Gemini 3.1 Pro | merged |
-| 0012 | arabic-docs-translation-v1 | A (doc wrap) | Gemini | drafted |
+| 0012 | arabic-docs-translation-v1 | A (doc wrap) | Gemini | merged |
 
 ## Legend
 
