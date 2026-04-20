@@ -286,6 +286,7 @@ def test_all_python_targets_are_identifiers():
 
 # Group: v1.1 additions (Category C — no ADR required per ADR 0003)
 
+
 def test_builtin_breakpoint():
     d = load_dialect("ar-v1")
     assert d.names[normalize_identifier("نقطة_توقف")] == "breakpoint"
