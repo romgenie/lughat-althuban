@@ -23,7 +23,7 @@ apython examples/01_hello.apy
 apython examples/07_imports.apy   # يستورد examples/helper.apy عبر الخطّاف
 ```
 
-أو شغّل المجموعة كاملة كاختبار دخان (smoke test):
+أو شغّل المجموعة كاملة كاختبار شامل:
 
 ```bash
 python -m pytest tests/test_examples.py
@@ -31,7 +31,7 @@ python -m pytest tests/test_examples.py
 
 ## ملاحظات
 
-- جميع الأمثلة حتمية (deterministic) — لا توجد استدعاءات لـ `input()` أو عشوائية أو تعتمد على الوقت.
+- جميع الأمثلة حتمية النتائج — لا توجد استدعاءات لـ `input()` أو عشوائية أو تعتمد على الوقت.
 - كل معرّف عربي مستمد من القاموس القياسي في [`dictionaries/ar-v1.md`](../dictionaries/ar-v1.md).
 - لكي يعثر `07_imports.apy` على `helper.apy` ، يجب أن يكون دليل العمل هو `examples/` أو يجب أن يكون `examples/` في `sys.path`. يتعامل اختبار الدخان مع هذا عن طريق تشغيل المثال عبر `subprocess` مع جعل `cwd=examples/`.
 
