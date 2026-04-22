@@ -60,6 +60,14 @@ $ ثعبان -c '1 / 0'
 | [سجل التغييرات](docs/ar/CHANGELOG.md) | ما الذي تغيّر في كل إصدار |
 | [قاموس الكلمات المفتاحية](dictionaries/ar-v1.md) | المرجع الكامل لكل الكلمات المفتاحية والدوال |
 
+## المرحلة (ب): مفتوحة للمساهمات
+
+اكتملت المرحلة (أ). المرحلة (ب) تضيف أسماء عربية لمكتبات بايثون الشهيرة (فلاسك، نمباي، وغيرها)، وتغطي المكتبة القياسية، وتحدّث القاموس بكلمات `async` و`match`. يوجد ٢٨ حزمة تنفيذية، ست منها مكتوبة بالكامل والباقي بانتظار من يكتب مواصفاتها.
+
+- **خارطة الطريق:** [`ROADMAP-PHASE-B.md`](ROADMAP-PHASE-B.md)
+- **دليل المساهمة:** [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- **حزمة جيدة للبدء:** [`specs/B-002-phase-a-compat-suite.md`](specs/B-002-phase-a-compat-suite.md)
+
 </div>
 
 ---
@@ -69,7 +77,7 @@ $ ثعبان -c '1 / 0'
 A Python dialect where keywords, built-ins, and exceptions are written in Arabic. `.apy` files are translated to standard Python at load time and executed by CPython — no interpreter fork.
 
 **Status**: Phase A complete (2026-04-19). All four entry surfaces work: file, `-c`, stdin, REPL. `.apy` modules import each other. Uncaught exceptions print Arabic tracebacks.
-**Phase B**: not yet chartered.
+**Phase B**: chartered (ADR 0008). 28 packets drafted; 6 fully specified; **contributors welcome**. See [`ROADMAP-PHASE-B.md`](ROADMAP-PHASE-B.md) and [`CONTRIBUTING.md`](CONTRIBUTING.md).
 **License**: Apache-2.0.
 **Repo**: private during pre-release.
 
@@ -200,9 +208,16 @@ Every implementation unit is a spec packet. See [`specs/0000-template.md`](specs
 
 | Phase | Content | Status |
 |---|---|---|
-| 0 | Design decisions (7 ADRs) | complete |
+| 0 | Design decisions (8 ADRs) | complete |
 | A | Tokenize-based dialect: pretokenize, normalize, translate, CLI, import hook, REPL, Arabic tracebacks | complete |
-| B | Production replacement — scope and entry conditions to be defined | not started |
+| B | Production-grade ecosystem: alias-runtime + per-library mappings (Flask, Django, NumPy, …), stdlib coverage, dictionary v1.1 (async/match), tutorial translation, optional tooling (LSP, formatter) | **in progress — open for contributors** |
+
+**Phase B is where this project becomes useful for real work and where outside contributors are most welcome.** See:
+
+- **[`ROADMAP-PHASE-B.md`](ROADMAP-PHASE-B.md)** — the visible map of all 28 packets, dependencies, and statuses.
+- **[`CONTRIBUTING.md`](CONTRIBUTING.md)** — how to claim a packet, branch/commit/PR conventions, the Phase A compatibility promise, the review SLA.
+- **[`specs/B-001-alias-runtime-v1.md`](specs/B-001-alias-runtime-v1.md)** — the foundation packet every other Phase B packet builds on.
+- **[`specs/B-002-phase-a-compat-suite.md`](specs/B-002-phase-a-compat-suite.md)** — a "good first packet" for new contributors.
 
 ## Acknowledgements
 
