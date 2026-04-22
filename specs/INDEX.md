@@ -15,8 +15,8 @@
 | 0010 | examples-v1 | A (wrap) | Gemini 3.1 Pro | merged |
 | 0011 | fstring-interior-3-11 | A (post-wrap fix) | Gemini 3.1 Pro | merged |
 | 0012 | arabic-docs-translation-v1 | A (doc wrap) | Gemini | merged |
-| 0013 | search-engine-v1 | A (showcase) | Gemini Pro | drafted |
-| 0014 | prayer-times-v1 | A (showcase) | Gemini Pro | drafted |
+| 0013 | search-engine-v1 | A (showcase) | Gemini Pro | merged |
+| 0014 | prayer-times-v1 | A (showcase) | Gemini Pro | merged |
 
 ## Legend
 
