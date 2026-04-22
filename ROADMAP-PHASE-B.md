@@ -49,15 +49,15 @@ One packet per library. All depend on B-001 (which already covers `requests` its
 |---|---|---|---|---|---|---|
 | [B-010](specs/B-010-aliases-flask-v1.md) | aliases-flask-v1 — ~60 entries; the success-criterion packet | B-001 | M | drafted | — | **yes** |
 | B-011 | aliases-fastapi-v1 | B-001 | M | stub | ? | yes |
-| B-012 | aliases-httpx-v1 | B-001 | S | stub | ? | yes |
-| B-013 | aliases-click-v1 | B-001 | M | stub | ? | yes |
-| B-014 | aliases-pydantic-v1 | B-001 | M | stub | ? | no (semantic depth) |
+| B-012 | aliases-django-core-v1 — urls, views, models, forms | B-001 | L | stub | ? | no (large surface) |
+| B-013 | aliases-sqlalchemy-v1 | B-001 | M | stub | ? | no (semantic depth) |
+| B-014 | aliases-requests-extras-v1 — session/auth surface omitted from B-001 | B-001 | S | stub | ? | **yes** |
 | B-015 | aliases-pytest-v1 | B-001 | M | stub | ? | yes |
-| B-016 | aliases-sqlalchemy-v1 | B-001 | L | stub | ? | no (large surface) |
-| B-017 | aliases-numpy-v1 | B-001 | L | stub | ? | no (large surface) |
-| B-018 | aliases-pandas-v1 | B-001, B-017 | L | stub | ? | no (large surface) |
+| B-016 | aliases-numpy-core-v1 | B-001 | L | stub | ? | no (large surface) |
+| B-017 | aliases-pandas-core-v1 | B-001, B-016 | L | stub | ? | no (large surface) |
+| B-018 | aliases-pillow-v1 | B-001 | S | stub | ? | **yes** |
 
-**Pickup advice:** B-012 (`httpx`) and B-013 (`click`) are the smallest and most beginner-friendly. B-016, B-017, B-018 are real research projects — claim only if you actually use the library professionally.
+**Pickup advice:** B-014 (`requests` extras) and B-018 (`pillow`) are the smallest. B-016, B-017 are real research projects — claim only if you use the library professionally.
 
 ---
 
@@ -67,15 +67,15 @@ Each batch is a coherent group of stdlib modules that ship together. All depend 
 
 | ID | Title | Modules covered | Depends on | Size | Status | Owner |
 |---|---|---|---|---|---|---|
-| [B-030](specs/B-030-stdlib-os-pathlib-sys.md) | stdlib-os-pathlib-sys | `os`, `os.path`, `pathlib`, `sys` | B-001 | M | drafted | — |
-| B-031 | stdlib-io-json-csv-tomllib | `io`, `json`, `csv`, `tomllib`, `pickle` | B-001 | M | stub | ? |
-| B-032 | stdlib-collections-itertools-functools | `collections`, `itertools`, `functools`, `operator` | B-001 | M | stub | ? |
-| B-033 | stdlib-text | `re`, `string`, `textwrap`, `unicodedata` | B-001 | M | stub | ? |
-| B-034 | stdlib-datetime-zoneinfo-calendar | `datetime`, `zoneinfo`, `calendar` (+ optional Hijri integration via `hijridate`) | B-001 | M | stub | ? |
-| B-035 | stdlib-net | `urllib`, `http`, `socket`, `ssl` | B-001 | M | stub | ? |
-| B-036 | stdlib-asyncio | `asyncio` (full surface) | B-001, B-040 | M | stub | ? |
-| B-037 | stdlib-typing | `typing`, `typing_extensions` patterns | B-001 | S | stub | ? |
-| B-038 | stdlib-test | `unittest`, `doctest` | B-001, B-015 | M | stub | ? |
+| [B-030](specs/B-030-stdlib-os-pathlib-sys.md) | stdlib-os-pathlib-sys | `os`, `pathlib`, `sys` | B-001 | M | drafted | — |
+| B-031 | stdlib-collections-itertools-functools | `collections`, `itertools`, `functools` | B-001 | M | stub | ? |
+| B-032 | stdlib-datetime-time-calendar | `datetime`, `time`, `calendar` (+ `hijridate` hook) | B-001 | M | stub | ? |
+| B-033 | stdlib-json-csv-sqlite3 | `json`, `csv`, `sqlite3` | B-001 | M | stub | ? |
+| B-034 | stdlib-re-string-textwrap | `re`, `string`, `textwrap` | B-001 | M | stub | ? |
+| B-035 | stdlib-math-statistics-random-decimal-fractions | `math`, `statistics`, `random`, `decimal`, `fractions` | B-001 | M | stub | ? |
+| B-036 | stdlib-logging | `logging` | B-001 | S | stub | ? |
+| B-037 | stdlib-asyncio-core | `asyncio` core surface | B-001, B-040 | M | stub | ? |
+| B-038 | stdlib-leftovers | `subprocess`, `tempfile`, `shutil`, `argparse`, `urllib.parse`, `hashlib`, `secrets`, `uuid` | B-001 | M | stub | ? |
 
 ---
 
@@ -145,7 +145,7 @@ Stubs only. These are not committed to or foreclosed — they exist as placehold
 
 - **I write Python and use Flask** → claim B-010.
 - **I write Python and use one of the other top-10 libraries** → claim that library's packet (B-011 to B-018).
-- **I want a small, high-impact code packet** → claim B-002, B-040, or B-012 (`httpx`).
+- **I want a small, high-impact code packet** → claim B-002, B-040, or B-014 (`requests` extras).
 - **I want a small, high-impact non-code packet** → claim a single chapter of B-060 (e.g., "tutorial chapter 3 — control flow"), or B-061.
 - **I'm an Arabic linguist with no Python background** → review the translation tables in B-010 or B-030 before they're implemented. Comment on the spec packet's PR.
 - **I want to design infrastructure** → talk to the planner about B-001 (architectural; not for first-time contributors but possible if you have meta-path finder experience).

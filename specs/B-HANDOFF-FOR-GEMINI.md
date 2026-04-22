@@ -12,19 +12,20 @@ These six fully-specified packets exist in `specs/` and are the **structural tem
 
 | Spec | Role | Reuse pattern |
 |---|---|---|
-| `B-001-alias-runtime-v1.md` | Foundation packet — the runtime every alias mapping consumes. | Cite as a dependency in every B-01x and B-03x packet. |
-| `B-002-phase-a-compat-suite.md` | Pinned-output test suite for Phase A's user contract. | Cite as a dependency in every packet that touches `arabicpython/`. |
-| `B-010-aliases-flask-v1.md` | **SDK template.** Flask is the Phase B success criterion. | Use this as the structural prior for B-011 through B-018 (other SDK packets). |
-| `B-030-stdlib-os-pathlib-sys.md` | **Stdlib template.** | Use this as the structural prior for B-031 through B-038. |
-| `B-040-dictionary-v1.1-async-match.md` | Governance-heavy dictionary successor. | If a future packet adds dictionary entries, follow this shape. |
-| `B-060-tutorial-translation.md` | **Documentation/translation template.** | Use this as the structural prior for B-061 (cookbook translation) and any future doc-translation packet. |
+| [B-001-alias-runtime-v1.md](B-001-alias-runtime-v1.md) | Foundation packet — the runtime every alias mapping consumes. | Cite as a dependency in every B-01x and B-03x packet. |
+| [B-002-phase-a-compat-suite.md](B-002-phase-a-compat-suite.md) | Pinned-output test suite for Phase A's user contract. | Cite as a dependency in every packet that touches `arabicpython/`. |
+| [B-010-aliases-flask-v1.md](B-010-aliases-flask-v1.md) | **SDK template.** Flask is the Phase B success criterion. | Use this as the structural prior for B-011 through B-018 (other SDK packets). |
+| [B-030-stdlib-os-pathlib-sys.md](B-030-stdlib-os-pathlib-sys.md) | **Stdlib template.** | Use this as the structural prior for B-031 through B-038. |
+| [B-040-dictionary-v1.1-async-match.md](B-040-dictionary-v1.1-async-match.md) | Governance-heavy dictionary successor. | If a future packet adds dictionary entries, follow this shape. |
+| [B-060-tutorial-translation.md](B-060-tutorial-translation.md) | **Documentation/translation template.** | Use this as the structural prior for B-061 (cookbook translation) and any future doc-translation packet. |
 
 Also exist as supporting infrastructure:
 
-- `CONTRIBUTING.md` — workflow contract.
-- `ROADMAP-PHASE-B.md` — visible map of all 28 packets and their statuses.
-- `.github/ISSUE_TEMPLATE/*.md` — claim, bug, term proposal, new packet proposal.
-- `.github/PULL_REQUEST_TEMPLATE.md` — PR shape.
+- [CONTRIBUTING.md](../CONTRIBUTING.md) — workflow contract.
+- [ROADMAP-PHASE-B.md](../ROADMAP-PHASE-B.md) — visible map of all 28 packets and their statuses.
+- [.github/ISSUE_TEMPLATE/](../.github/ISSUE_TEMPLATE/) — claim, bug, term proposal, new packet proposal.
+- [.github/PULL_REQUEST_TEMPLATE.md](../.github/PULL_REQUEST_TEMPLATE.md) — PR shape.
+- [specs/0000-template.md](0000-template.md) — the canonical spec packet template structure.
 
 ---
 
