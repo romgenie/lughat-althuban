@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "apython"
 version = "0.0.1"
-description = "Arabic Python — a Python dialect with Arabic keywords, built-ins, and exceptions"
+description = "لغة الثعبان — a Python dialect with Arabic keywords, built-ins, and exceptions"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Apache-2.0" }
@@ -35,7 +35,7 @@ dev = [
 ]
 
 [project.scripts]
-apython = "arabicpython.cli:main"
+"ثعبان" = "arabicpython.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["arabicpython*"]

@@ -41,13 +41,13 @@ def main(argv: "list[str] | None" = None) -> int:
         argv = sys.argv[1:]
 
     parser = argparse.ArgumentParser(
-        prog="apython",
-        usage="apython [-h] [--version] [-c CODE] [FILE] [args ...]",
-        description="Arabic Python runner.",
+        prog="ثعبان",
+        usage="ثعبان [-h] [--version] [-c CODE] [FILE] [args ...]",
+        description="لغة الثعبان — Arabic Python runner.",
         add_help=False,
     )
     parser.add_argument("-h", "--help", action="store_true")
-    parser.add_argument("--version", action="version", version=f"apython {__version__}")
+    parser.add_argument("--version", action="version", version=f"ثعبان {__version__}")
     parser.add_argument("-c", dest="code", metavar="CODE")
     parser.add_argument("file", nargs="?", metavar="FILE")
     parser.add_argument("args", nargs=argparse.REMAINDER)
@@ -87,7 +87,7 @@ def main(argv: "list[str] | None" = None) -> int:
             try:
                 source = sys.stdin.read()
             except UnicodeDecodeError as e:
-                sys.stderr.write(f"apython: can't read from stdin: {e}\n")
+                sys.stderr.write(f"ثعبان:can't read from stdin: {e}\n")
                 return 1
             original_path = "<stdin>"
             prog_name = "-"
@@ -96,7 +96,7 @@ def main(argv: "list[str] | None" = None) -> int:
             prog_name = file_path
             if os.path.isdir(file_path):
                 sys.stderr.write(
-                    f"apython: can't open file '{file_path}': [Errno 21] Is a directory\n"
+                    f"ثعبان:can't open file '{file_path}': [Errno 21] Is a directory\n"
                 )
                 return 1
             try:
@@ -106,19 +106,19 @@ def main(argv: "list[str] | None" = None) -> int:
                     source = f.read()
             except FileNotFoundError:
                 sys.stderr.write(
-                    f"apython: can't open file '{file_path}': [Errno 2] No such file or directory\n"
+                    f"ثعبان:can't open file '{file_path}': [Errno 2] No such file or directory\n"
                 )
                 return 1
             except PermissionError as e:
-                sys.stderr.write(f"apython: can't open file '{file_path}': {e}\n")
+                sys.stderr.write(f"ثعبان:can't open file '{file_path}': {e}\n")
                 return 1
             except UnicodeDecodeError as e:
                 sys.stderr.write(
-                    f"apython: can't open file '{file_path}': invalid UTF-8 encoding ({e})\n"
+                    f"ثعبان:can't open file '{file_path}': invalid UTF-8 encoding ({e})\n"
                 )
                 return 1
             except Exception as e:
-                sys.stderr.write(f"apython: can't open file '{file_path}': {e}\n")
+                sys.stderr.write(f"ثعبان:can't open file '{file_path}': {e}\n")
                 return 1
     else:
         # No FILE, no -c, no '-': drop into the REPL.

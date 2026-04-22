@@ -1,6 +1,6 @@
 <div dir="rtl">
 
-# أمثلة apython
+# أمثلة لغة الثعبان
 
 سبعة برامج `.apy` تصاعدية تستعرض ميزات Phase A.
 
@@ -19,8 +19,8 @@
 من جذر المستودع، بعد تنفيذ `pip install -e .`:
 
 ```bash
-apython examples/01_hello.apy
-apython examples/07_imports.apy   # يستورد examples/helper.apy عبر الخطّاف
+ثعبان examples/01_hello.apy
+ثعبان examples/07_imports.apy   # يستورد examples/helper.apy عبر الخطّاف
 ```
 
 أو شغّل المجموعة كاملة كاختبار شامل:

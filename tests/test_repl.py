@@ -19,7 +19,7 @@ def console():
 
 @pytest.fixture(autouse=True)
 def isolate_history(monkeypatch, tmp_path):
-    """Redirect history file to tmp_path so tests don't touch ~/.apython_history."""
+    """Redirect history file to tmp_path so tests don't touch ~/.ثعبان_history."""
     monkeypatch.setattr(
         "os.path.expanduser",
         lambda p: str(tmp_path / p.lstrip("~/")) if p.startswith("~/") else p,
@@ -208,7 +208,7 @@ def test_run_repl_banner_includes_version(monkeypatch, capsys):
     monkeypatch.setattr("sys.stdin", io.StringIO(""))
     run_repl()
     out, err = capsys.readouterr()
-    assert f"apython {__version__}" in out or f"apython {__version__}" in err
+    assert f"ثعبان {__version__}" in out or f"ثعبان {__version__}" in err
 
 
 def test_run_repl_executes_piped_input(monkeypatch, capsys):
@@ -229,14 +229,14 @@ def test_run_repl_sys_exit_propagates(monkeypatch):
 
 
 def test_apython_ps1_env_override(monkeypatch):
-    monkeypatch.setenv("APYTHON_PS1", "آب> ")
+    monkeypatch.setenv("THUABAN_PS1", "آب> ")
     monkeypatch.setattr("sys.stdin", io.StringIO(""))
     run_repl(banner="", exit_msg="")
     assert sys.ps1 == "آب> "
 
 
 def test_apython_ps2_env_override(monkeypatch):
-    monkeypatch.setenv("APYTHON_PS2", "صص> ")
+    monkeypatch.setenv("THUABAN_PS2", "صص> ")
     monkeypatch.setattr("sys.stdin", io.StringIO(""))
     run_repl(banner="", exit_msg="")
     assert sys.ps2 == "صص> "
@@ -269,7 +269,7 @@ def test_history_file_used_when_readline_present(monkeypatch, tmp_path):
 
     monkeypatch.setattr("sys.stdin", io.StringIO("x = 1\n"))
     run_repl(banner="", exit_msg="")
-    history_file = tmp_path / ".apython_history"
+    history_file = tmp_path / ".ثعبان_history"
     assert history_file.exists()
 
 

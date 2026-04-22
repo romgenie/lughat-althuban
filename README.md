@@ -1,6 +1,6 @@
 <div dir="rtl">
 
-# apython — بايثون بالعربية
+# لغة الثعبان — بايثون بالعربية
 
 لهجة برمجية تكتب فيها الكلمات المفتاحية والدوال المدمجة والاستثناءات بالعربية. ملفات `.apy` تُترجم إلى بايثون القياسي في وقت التحميل وتُنفَّذ بواسطة CPython — دون تشعيب للمترجم ودون تعديل على اللغة.
 
@@ -16,7 +16,7 @@
 ```
 
 ```bash
-$ apython hello.apy
+$ ثعبان hello.apy
 مرحبا يا سارة
 مرحبا يا أحمد
 مرحبا يا ليلى
@@ -27,24 +27,24 @@ $ apython hello.apy
 يتطلب Python 3.11 أو أحدث:
 
 ```bash
-git clone https://github.com/GalaxyRuler/apython
-cd apython
+git clone https://github.com/GalaxyRuler/lughat-althuban
+cd lughat-althuban
 pip install -e .
 ```
 
 ## تشغيل الشيفرة
 
 ```bash
-apython ملف.apy            # تشغيل ملف
-apython -c 'اطبع("مرحبا")' # تنفيذ سطر مباشرةً
-apython - < ملف.apy        # قراءة من المدخل القياسي
-apython                     # البيئة التفاعلية REPL
+ثعبان ملف.apy            # تشغيل ملف
+ثعبان -c 'اطبع("مرحبا")' # تنفيذ سطر مباشرةً
+ثعبان - < ملف.apy        # قراءة من المدخل القياسي
+ثعبان                     # البيئة التفاعلية REPL
 ```
 
 ## رسائل الخطأ بالعربية
 
 ```bash
-$ apython -c '1 / 0'
+$ ثعبان -c '1 / 0'
 تتبع_الأخطاء (المكدس الأحدث آخرا):
   ملف "<string>", سطر 1, في <الوحدة>
 خطأ_قسمة_صفر: القسمة على صفر
@@ -64,7 +64,7 @@ $ apython -c '1 / 0'
 
 ---
 
-# apython — Arabic Python
+# لغة الثعبان — Arabic Python
 
 A Python dialect where keywords, built-ins, and exceptions are written in Arabic. `.apy` files are translated to standard Python at load time and executed by CPython — no interpreter fork.
 
@@ -85,7 +85,7 @@ A Python dialect where keywords, built-ins, and exceptions are written in Arabic
 ```
 
 ```bash
-$ apython hello.apy
+$ ثعبان hello.apy
 مرحبا يا سارة
 مرحبا يا أحمد
 مرحبا يا ليلى
@@ -94,25 +94,25 @@ $ apython hello.apy
 ## Install
 
 ```bash
-git clone https://github.com/GalaxyRuler/apython
-cd apython
+git clone https://github.com/GalaxyRuler/lughat-althuban
+cd lughat-althuban
 pip install -e .
 ```
 
-Requires Python 3.11+. Installs the `apython` console script.
+Requires Python 3.11+. Installs the `ثعبان` console script.
 
 ## Running code
 
 Four entry surfaces, mirroring stock `python`:
 
 ```bash
-apython script.apy [args...]    # run a file
-apython -c 'اطبع("مرحبا")'      # run an inline string
-apython - < script.apy          # read from stdin
-apython                          # interactive REPL
+ثعبان script.apy [args...]    # run a file
+ثعبان -c 'اطبع("مرحبا")'      # run an inline string
+ثعبان - < script.apy          # read from stdin
+ثعبان                          # interactive REPL
 ```
 
-`apython --help` and `apython --version` work as expected. Exit codes: `0` success, `1` runtime/translate error, `2` usage error.
+`ثعبان --help` and `ثعبان --version` work as expected. Exit codes: `0` success, `1` runtime/translate error, `2` usage error.
 
 ## Importing `.apy` modules
 
@@ -131,7 +131,7 @@ helper.مرحبا("عالم")
 ```
 
 ```bash
-$ apython main.apy
+$ ثعبان main.apy
 مرحبا يا عالم
 ```
 
@@ -142,7 +142,7 @@ Mixed `.py` / `.apy` packages work — Python files importing `.apy` modules see
 Uncaught exceptions are printed with Arabic type names and translated messages:
 
 ```bash
-$ apython -c '1 / 0'
+$ ثعبان -c '1 / 0'
 تتبع_الأخطاء (المكدس الأحدث آخرا):
   ملف "<string>", سطر 1, في <الوحدة>
 خطا_القسمه_على_صفر: القسمة على صفر
@@ -168,7 +168,7 @@ from arabicpython import (
 ## Project structure
 
 ```
-apython/
+lughat-althuban/
 ├── decisions/        ADRs — architectural choices, immutable once accepted
 ├── dictionaries/     ar-v1.md (keywords/built-ins) + exceptions-ar-v1.md
 ├── specs/            Spec packets handed off to the implementer

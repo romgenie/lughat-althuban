@@ -24,7 +24,7 @@ def test_version_flag_prints_version(capsys):
         ret = e.code
     assert ret == 0
     out, err = capsys.readouterr()
-    assert f"apython {__version__}" in out or f"apython {__version__}" in err
+    assert f"ثعبان {__version__}" in out or f"ثعبان {__version__}" in err
 
 
 def test_cli_no_args_drops_into_repl(monkeypatch, capsys):
@@ -33,11 +33,11 @@ def test_cli_no_args_drops_into_repl(monkeypatch, capsys):
     ret = main([])
     assert ret == 0
     out, err = capsys.readouterr()
-    assert "apython" in out or "apython" in err
+    assert "ثعبان" in out or "ثعبان" in err
 
 
 def test_cli_repl_executes_piped_arabic(monkeypatch, capsys):
-    """Pipe an Arabic command into apython with no args; it should run and exit."""
+    """Pipe an Arabic command into ثعبان with no args; it should run and exit."""
     monkeypatch.setattr("sys.stdin", io.StringIO("اطبع('cli_repl')\n"))
     ret = main([])
     assert ret == 0

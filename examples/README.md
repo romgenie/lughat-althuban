@@ -1,6 +1,6 @@
 <div dir="rtl">
 
-# الأمثلة — apython
+# الأمثلة — لغة الثعبان
 
 سبعة برامج تعليمية تصاعدية مكتوبة بالعربية. كل مثال مستقل وقابل للتشغيل مباشرة.
 
@@ -17,8 +17,8 @@
 ## تشغيل الأمثلة
 
 ```bash
-apython examples/01_hello.apy
-apython examples/07_imports.apy
+ثعبان examples/01_hello.apy
+ثعبان examples/07_imports.apy
 ```
 
 للشرح الكامل لكل مثال بالعربية: [README-ar.md](README-ar.md)
@@ -27,7 +27,7 @@ apython examples/07_imports.apy
 
 ---
 
-# apython examples
+# لغة الثعبان examples
 
 Seven progressive `.apy` programs demonstrating Phase A's feature surface.
 
@@ -46,8 +46,8 @@ Seven progressive `.apy` programs demonstrating Phase A's feature surface.
 From the repository root, after `pip install -e .`:
 
 ```bash
-apython examples/01_hello.apy
-apython examples/07_imports.apy   # imports examples/helper.apy via the hook
+ثعبان examples/01_hello.apy
+ثعبان examples/07_imports.apy   # imports examples/helper.apy via the hook
 ```
 
 Or run the whole suite as a smoke test:

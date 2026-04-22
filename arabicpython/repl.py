@@ -102,15 +102,15 @@ def run_repl(
 
     if banner is None:
         banner = (
-            f"apython {__version__} — Arabic Python REPL\n"
+            f"لغة الثعبان {__version__}\n"
             f"Python {sys.version.split()[0]} on {sys.platform}\n"
             f'Type "help()", "exit()", or press Ctrl-D to quit.\n'
         )
     if exit_msg is None:
         exit_msg = ""
 
-    sys.ps1 = os.environ.get("APYTHON_PS1", getattr(sys, "ps1", ">>> "))
-    sys.ps2 = os.environ.get("APYTHON_PS2", getattr(sys, "ps2", "... "))
+    sys.ps1 = os.environ.get("THUABAN_PS1", getattr(sys, "ps1", ">>> "))
+    sys.ps2 = os.environ.get("THUABAN_PS2", getattr(sys, "ps2", "... "))
 
     console = ArabicConsole()
     try:
@@ -143,7 +143,7 @@ def _setup_readline() -> "str | None":
     except ImportError:
         return None
 
-    history_path = os.path.expanduser("~/.apython_history")
+    history_path = os.path.expanduser("~/.ثعبان_history")
     with contextlib.suppress(OSError, FileNotFoundError):
         readline.read_history_file(history_path)
 
