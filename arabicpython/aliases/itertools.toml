@@ -1,0 +1,38 @@
+# arabicpython/aliases/itertools.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `itertools` standard-library module.
+# All Arabic keys must round-trip through normalize_identifier() unchanged.
+#   - Final ة → ه  (e.g. دورة → دوره, سلسلة → سلسله)
+#   - أ/إ/آ anywhere → ا  (e.g. أسقط → اسقط)
+#   - ة mid-identifier (before _) is NOT changed (only last char is folded)
+
+[meta]
+arabic_name   = "ادوات_تكرار"
+python_module = "itertools"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Infinite iterators ───────────────────────────────────────────────────────
+"عداد_لانهائي"          = "count"
+"دوره"                  = "cycle"
+"كرر_قيمه"             = "repeat"
+
+# ── Finite iterators ─────────────────────────────────────────────────────────
+"تراكم"                 = "accumulate"
+"سلسله"                 = "chain"
+"ضغط"                   = "compress"
+"اسقط_طالما"            = "dropwhile"
+"تصفية_خاطئه"          = "filterfalse"
+"تجميع_حسب"            = "groupby"
+"شريحة_مكرر"            = "islice"
+"خذ_طالما"              = "takewhile"
+"نسخ_مكرر"             = "tee"
+
+# ── Combinatoric iterators ────────────────────────────────────────────────────
+"ضرب_ديكارتي"           = "product"
+"تباديل"                = "permutations"
+"توافيق"                = "combinations"
+"توافيق_مع_تكرار"       = "combinations_with_replacement"

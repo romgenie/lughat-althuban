@@ -1,0 +1,45 @@
+# arabicpython/aliases/collections.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `collections` standard-library module.
+# All Arabic keys must round-trip through normalize_identifier() unchanged:
+#   - أ/إ/آ anywhere → ا
+#   - final ة → ه, final ى → ي
+#   - ة mid-identifier (before _) stays ة (only LAST char of full name is folded)
+#
+# Module-level classes are listed first; unbound instance methods follow using
+# dotted paths (e.g. "Counter.most_common").  Call unbound methods with an
+# explicit instance: مجموعات.الاكثر_شيوعا(c, 3) ≡ Counter.most_common(c, 3).
+
+[meta]
+arabic_name   = "مجموعات"
+python_module = "collections"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Module-level container types ─────────────────────────────────────────────
+"قاموس_مرتب"            = "OrderedDict"
+"قاموس_تلقائي"          = "defaultdict"
+"عداد"                  = "Counter"
+"طابور_مزدوج"           = "deque"
+"صف_باسم"               = "namedtuple"
+"سلسلة_خرائط"           = "ChainMap"
+"مستخدم_قاموس"          = "UserDict"
+"مستخدم_قائمه"          = "UserList"
+"مستخدم_نص"             = "UserString"
+
+# ── Counter unbound methods ──────────────────────────────────────────────────
+"عناصر"                 = "Counter.elements"
+"الاكثر_شيوعا"          = "Counter.most_common"
+"طرح"                   = "Counter.subtract"
+
+# ── deque unbound methods ────────────────────────────────────────────────────
+"اضف_يمين"              = "deque.append"
+"اضف_يسار"              = "deque.appendleft"
+"انتزع_يمين"            = "deque.pop"
+"انتزع_يسار"            = "deque.popleft"
+"مدد_يمين"              = "deque.extend"
+"مدد_يسار"              = "deque.extendleft"
+"ادر"                   = "deque.rotate"

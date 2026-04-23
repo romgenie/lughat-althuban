@@ -1,0 +1,38 @@
+# arabicpython/aliases/functools.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `functools` standard-library module.
+# All Arabic keys must round-trip through normalize_identifier() unchanged.
+#   - Final ة → ه  (e.g. أغلفة → اغلفه)
+#   - أ/إ/آ anywhere → ا
+#   - ة mid-identifier (before _) stays as-is (only last char is folded)
+#
+# Notes:
+#   functools.cache  was added in Python 3.9
+#   functools.cached_property was added in Python 3.8
+
+[meta]
+arabic_name   = "ادوات_داليه"
+python_module = "functools"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Core higher-order functions ───────────────────────────────────────────────
+"جزيء"                  = "partial"
+"اختزال"                = "reduce"
+
+# ── Caching decorators ────────────────────────────────────────────────────────
+"ذاكرة_مؤقتة_مؤخرا"    = "lru_cache"
+"تخزين_مؤقت"            = "cache"
+"خاصية_محسوبة_مره"      = "cached_property"
+
+# ── Decorator utilities ───────────────────────────────────────────────────────
+"اغلفه"                  = "wraps"
+"تحديث_الغلاف"           = "update_wrapper"
+
+# ── Class / dispatch helpers ─────────────────────────────────────────────────
+"ترتيب_كامل"             = "total_ordering"
+"توزيع_منفرد"            = "singledispatch"
+"مقارنة_بمفتاح"          = "cmp_to_key"
