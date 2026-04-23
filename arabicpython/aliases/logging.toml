@@ -1,0 +1,79 @@
+# arabicpython/aliases/logging.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `logging` standard-library module.
+# Normalization:
+#   أ/إ/آ → ا  anywhere
+#   final ة → ه
+#   final ى → ي
+#
+# Name notes:
+#   تحذير (warning) collides with the builtin Warning exception in dialect.names
+#   but NOT in dialect.attributes — so proxy attr access تسجيل.تحذير works fine.
+#   خطا (error) collides with False (خطأ→خطا) in dialect.names but not attrs.
+#   Both are acceptable tradeoffs for the module-proxy usage pattern.
+#
+# Dotted-path entries resolve unbound methods on Logger, Handler, Formatter.
+
+[meta]
+arabic_name   = "تسجيل"
+python_module = "logging"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Module-level log functions ────────────────────────────────────────────────
+"تصحيح"                 = "debug"
+"معلومات"               = "info"
+"تحذير"                 = "warning"
+"خطا"                   = "error"
+"حرج"                   = "critical"
+"سجل"                   = "log"
+"استثناء"               = "exception"
+
+# ── Module-level setup functions ──────────────────────────────────────────────
+"احضر_مسجل"             = "getLogger"
+"ضبط_اساسي"             = "basicConfig"
+"تعطيل"                 = "disable"
+"اغلق"                  = "shutdown"
+"احضر_اسم_مستوي"        = "getLevelName"
+"اضف_اسم_مستوي"         = "addLevelName"
+"التقط_تحذيرات"         = "captureWarnings"
+
+# ── Module-level level constants ──────────────────────────────────────────────
+"مستوى_تصحيح"           = "DEBUG"
+"مستوى_معلومات"         = "INFO"
+"مستوى_تحذير"           = "WARNING"
+"مستوى_خطا"             = "ERROR"
+"مستوى_حرج"             = "CRITICAL"
+"مستوى_لاشيء"           = "NOTSET"
+
+# ── Module-level classes ──────────────────────────────────────────────────────
+"مسجل"                  = "Logger"
+"معالج"                 = "Handler"
+"منسق_سجل"              = "Formatter"
+"مرشح"                  = "Filter"
+"سجله"                  = "LogRecord"
+"معالج_دفق"             = "StreamHandler"
+"معالج_ملف"             = "FileHandler"
+"معالج_فارغ"            = "NullHandler"
+
+# ── Logger unbound methods ────────────────────────────────────────────────────
+"تصحيح_مسجل"            = "Logger.debug"
+"معلومات_مسجل"          = "Logger.info"
+"تحذير_مسجل"            = "Logger.warning"
+"خطا_مسجل"              = "Logger.error"
+"حرج_مسجل"              = "Logger.critical"
+"سجل_مسجل"              = "Logger.log"
+"ضبط_مستوي"             = "Logger.setLevel"
+"اضف_معالج"             = "Logger.addHandler"
+"احضر_مستوى_فعلي"       = "Logger.getEffectiveLevel"
+
+# ── Handler unbound methods ───────────────────────────────────────────────────
+"ضبط_منسق"              = "Handler.setFormatter"
+"ضبط_مستوى_معالج"       = "Handler.setLevel"
+"اغلق_معالج"            = "Handler.close"
+
+# ── Formatter unbound method ──────────────────────────────────────────────────
+"نسق_سجله"              = "Formatter.format"
