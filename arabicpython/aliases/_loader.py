@@ -28,6 +28,7 @@ class AliasMapping:
     dict_version: str  # e.g. "ar-v1" — tracks ADR 0003 dictionary versioning
     entries: dict[str, str]  # Arabic attribute → Python attribute name
     source_path: Path  # for error messages
+    proxy_classes: frozenset  # class names whose *instances* get wrapped in InstanceProxy
 
 
 def _resolve_dotted_attr(obj: Any, dotted_name: str) -> Any:
@@ -84,6 +85,17 @@ def load_mapping(toml_path: Path) -> AliasMapping:
     python_module: str = meta["python_module"]
     dict_version: str = meta["dict_version"]
 
+    # Optional proxy_classes — class names whose instances get wrapped
+    proxy_classes_raw = meta.get("proxy_classes", [])
+    if not isinstance(proxy_classes_raw, list) or not all(
+        isinstance(c, str) for c in proxy_classes_raw
+    ):
+        raise AliasMappingError(
+            f"{toml_path}: [meta].proxy_classes must be a list of strings, "
+            f"got {proxy_classes_raw!r}"
+        )
+    proxy_classes: frozenset = frozenset(proxy_classes_raw)
+
     # ------------------------------------------------------------------ #
     # 3. Validate [entries]
     # ------------------------------------------------------------------ #
@@ -137,10 +149,27 @@ def load_mapping(toml_path: Path) -> AliasMapping:
                 f"(mapped from Arabic key {arabic_key!r})"
             )
 
+    # ------------------------------------------------------------------ #
+    # 6. Verify proxy_classes entries are actual classes in the module
+    # ------------------------------------------------------------------ #
+    for cls_name in proxy_classes:
+        cls = getattr(module, cls_name, None)
+        if cls is None:
+            raise AliasMappingError(
+                f"{toml_path}: proxy_classes entry {cls_name!r} does not exist "
+                f"in module {python_module!r}"
+            )
+        if not isinstance(cls, type):
+            raise AliasMappingError(
+                f"{toml_path}: proxy_classes entry {cls_name!r} is not a class "
+                f"(got {type(cls).__name__!r})"
+            )
+
     return AliasMapping(
         arabic_name=arabic_name,
         python_module=python_module,
         dict_version=dict_version,
         entries=dict(entries_raw),
         source_path=toml_path,
+        proxy_classes=proxy_classes,
     )

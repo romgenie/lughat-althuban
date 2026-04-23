@@ -1,0 +1,94 @@
+# arabicpython/aliases/flask.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `flask` web framework.
+# All Arabic keys round-trip through normalize_identifier() unchanged.
+# Sorted by section, then alphabetically by Python attribute name within each section.
+#
+# Architecture note (B-010):
+#   proxy_classes = ["Flask", "Blueprint"] causes ModuleProxy to wrap
+#   those classes in a ClassFactory. Calling `فلاسك.فلاسك(__name__)`
+#   returns an InstanceProxy so that Arabic method names work on the app:
+#
+#     @تطبيق.طريق('/')          ≡  @app.route('/')
+#     تطبيق.يعمل()              ≡  app.run()
+#
+#   Flask.* dotted-path entries are resolved on the instance:
+#   "طريق" → "Flask.route" → getattr(app_instance, "route") (bound method).
+#
+#   Module-level entries (request, jsonify, …) are accessed on the
+#   module proxy: فلاسك.طلب, فلاسك.حول_json(…), etc.
+#
+# Cross-consistency notes:
+#   - flask.g → "عام" ("general/global"); different from sys/os contexts.
+#   - flask.abort → "اجهض" (abort/terminate); unrelated to os._exit/sys.exit root.
+#   - flask.redirect → "حول" (redirect/transform); short and clear.
+
+[meta]
+arabic_name    = "فلاسك"
+python_module  = "flask"
+dict_version   = "ar-v1"
+schema_version = 1
+maintainer     = "—"
+proxy_classes  = ["Flask", "Blueprint"]
+
+[entries]
+# ── Module-level classes ──────────────────────────────────────────────────────
+"فلاسك"                 = "Flask"             # the app class (ClassFactory wraps it)
+"مخطط"                  = "Blueprint"          # the blueprint class (also proxied)
+"صنف_الاعداد"           = "Config"
+"صنف_الطلب"             = "Request"
+"صنف_الاستجابه"         = "Response"
+
+# ── Context locals (LocalProxy objects) ──────────────────────────────────────
+"التطبيق_الحالي"        = "current_app"        # proxy to the active Flask app
+"عام"                   = "g"                  # per-request global store
+"طلب"                   = "request"            # the incoming HTTP request
+"جلسه"                  = "session"            # the session dict
+
+# ── Core functions ────────────────────────────────────────────────────────────
+"اجهض"                  = "abort"              # raise an HTTP exception
+"بعد_هذا_الطلب"        = "after_this_request"
+"انسخ_سياق"            = "copy_current_request_context"
+"ومض"                   = "flash"              # flash a one-time message
+"رسائل_الومض"          = "get_flashed_messages"
+"خاصيه_قالب"           = "get_template_attribute"
+"لها_سياق_تطبيق"       = "has_app_context"
+"لها_سياق_طلب"         = "has_request_context"
+"حول_json"              = "jsonify"            # serialize to JSON response
+"انشئ_استجابه"         = "make_response"
+"حول"                   = "redirect"           # HTTP redirect
+"صيغ"                   = "render_template"    # render a Jinja2 template
+"صيغ_نص"               = "render_template_string"
+"ارسل_ملف"             = "send_file"
+"ارسل_من_مجلد"         = "send_from_directory"
+"بث_صيغه"              = "stream_template"
+"بث_نص"                = "stream_template_string"
+"بث_مع_سياق"           = "stream_with_context"
+"رابط_ل"               = "url_for"            # build a URL for a named endpoint
+
+# ── Signals ───────────────────────────────────────────────────────────────────
+"تفكيك_السياق"          = "appcontext_tearing_down"
+"استثناء_طلب"           = "got_request_exception"
+"طلب_انتهي"             = "request_finished"
+"طلب_بدا"               = "request_started"
+"صيغ_القالب"            = "template_rendered"
+
+# ── Flask app methods (unbound; ClassFactory → InstanceProxy resolves these) ──
+"اضف_مسار"             = "Flask.add_url_rule"
+"بعد_الطلب"            = "Flask.after_request"
+"قبل_الطلب"            = "Flask.before_request"
+"معالج_سياق"           = "Flask.context_processor"
+"احذف"                  = "Flask.delete"       # DELETE HTTP method decorator
+"معالج_الخطا"           = "Flask.errorhandler"  # decorator form
+"احصل"                  = "Flask.get"           # GET HTTP method decorator
+"رقع"                   = "Flask.patch"         # PATCH HTTP method decorator
+"انشر"                  = "Flask.post"          # POST HTTP method decorator
+"ضع"                    = "Flask.put"           # PUT HTTP method decorator
+"سجل_معالج_خطا"        = "Flask.register_error_handler"  # imperative form
+"سجل_مخطط"             = "Flask.register_blueprint"
+"طريق"                  = "Flask.route"         # URL route decorator
+"يعمل"                  = "Flask.run"           # start the dev server
+"نهايه_الطلب"           = "Flask.teardown_request"
+"عميل_تجريبي"           = "Flask.test_client"
+"سياق_تجريبي"           = "Flask.test_request_context"

@@ -26,6 +26,7 @@ class AliasLoader(importlib.abc.Loader):
             real_module,
             self._mapping.entries,
             arabic_name=self._mapping.arabic_name,
+            proxy_classes=self._mapping.proxy_classes,
         )
 
     def exec_module(self, module: types.ModuleType) -> None:  # noqa: ARG002
