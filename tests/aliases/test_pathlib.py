@@ -49,8 +49,8 @@ class TestPathlibProxy:
     def test_read_write_text_unbound(self, مسار_مكتبه, tmp_path):
         """اكتب_نص / اقرا_نص round-trip through unbound methods."""
         p = pathlib.Path(tmp_path / "hello.txt")
-        مسار_مكتبه.اكتب_نص(p, "مرحبا")
-        content = مسار_مكتبه.اقرا_نص(p)
+        مسار_مكتبه.اكتب_نص(p, "مرحبا", encoding="utf-8")
+        content = مسار_مكتبه.اقرا_نص(p, encoding="utf-8")
         assert content == "مرحبا"
 
     def test_mkdir_unbound(self, مسار_مكتبه, tmp_path):

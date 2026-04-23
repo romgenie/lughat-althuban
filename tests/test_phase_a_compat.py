@@ -157,7 +157,7 @@ def test_phase_a_example_runs_unchanged(example_path: pathlib.Path) -> None:
 
     # Read snapshot with universal newline suppression so \r\n on Windows
     # doesn't cause spurious mismatches.
-    expected = snapshot_file.read_text(encoding="utf-8", newline="")
+    expected = snapshot_file.read_text(encoding="utf-8")
     # Normalise the subprocess stdout to LF as well
     actual = stdout.replace("\r\n", "\n")
 
