@@ -185,7 +185,9 @@ def test_dictionary_ar_v1_unchanged() -> None:
     change is needed, introduce ar-v1.1.md or ar-v2.md via a new ADR instead
     of modifying this file.
     """
-    actual_digest = hashlib.sha256(DICT_FILE.read_bytes()).hexdigest()
+    # Normalise CRLF→LF before hashing so Windows and Linux/macOS agree.
+    content = DICT_FILE.read_bytes().replace(b"\r\n", b"\n")
+    actual_digest = hashlib.sha256(content).hexdigest()
     expected_digest = DICT_HASH_FILE.read_text(encoding="utf-8").strip()
 
     assert actual_digest == expected_digest, (
