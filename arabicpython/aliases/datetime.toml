@@ -1,0 +1,60 @@
+# arabicpython/aliases/datetime.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `datetime` standard-library module.
+# Normalization rules applied to all keys:
+#   آ/أ/إ → ا  everywhere (e.g. الآن → الان, إيزو → ايزو)
+#   final ة → ه  (e.g. ساعة → ساعه, دقيقة → دقيقه)
+#   ة mid-identifier (before _) is NOT changed (only last char is folded)
+#
+# Dotted-path entries resolve against the module:
+#   "datetime.now"  → getattr(datetime.datetime, "now")  (classmethod)
+#   "datetime.isoformat" → getattr(datetime.datetime, "isoformat")  (unbound method)
+#   "timezone.utc"  → getattr(datetime.timezone, "utc")  (UTC singleton)
+#
+# Properties (hour, minute, …) are intentionally excluded: they are C-level
+# slot descriptors that do not behave like unbound methods.  Access them via
+# normal Python attribute syntax on instances instead.
+
+[meta]
+arabic_name   = "مكتبة_تاريخ"
+python_module = "datetime"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Module-level classes ──────────────────────────────────────────────────────
+"تاريخ"                 = "date"
+"وقت"                   = "time"
+"تاريخ_وقت"             = "datetime"
+"فرق_زمني"              = "timedelta"
+"نطاق_زمني"             = "timezone"
+
+# ── Timezone constants ────────────────────────────────────────────────────────
+"عالمي"                 = "timezone.utc"
+
+# ── datetime class methods (callable from proxy as class methods) ──────────────
+"الان"                  = "datetime.now"
+"الان_عالمي"            = "datetime.utcnow"
+"من_طابع_زمني"          = "datetime.fromtimestamp"
+"حلل_نص"                = "datetime.strptime"
+"من_ايزو"               = "datetime.fromisoformat"
+"ادمج"                  = "datetime.combine"
+
+# ── date class methods ────────────────────────────────────────────────────────
+"اليوم"                 = "date.today"
+"تاريخ_من_طابع"         = "date.fromtimestamp"
+
+# ── datetime unbound instance methods ────────────────────────────────────────
+"نسق_نص"                = "datetime.strftime"
+"نسق_ايزو"              = "datetime.isoformat"
+"يوم_الاسبوع"           = "datetime.weekday"
+"استبدل_وقت"            = "datetime.replace"
+"طابع_زمني"             = "datetime.timestamp"
+"جزء_تاريخ"             = "datetime.date"
+
+# ── date unbound instance methods ────────────────────────────────────────────
+"تاريخ_ايزو"            = "date.isoformat"
+"يوم_اسبوع_تاريخ"       = "date.weekday"
+"استبدل_تاريخ"          = "date.replace"

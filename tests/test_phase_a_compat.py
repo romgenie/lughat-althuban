@@ -135,6 +135,7 @@ _EXCLUDED = {
     "B01_http.apy",  # makes live HTTP call; requires @pytest.mark.network
     "B10_flask_hello.apy",  # starts a blocking HTTP server
     "B30_filesystem_walk.apy",  # requires a CLI argument (directory path)
+    "B32_datetime_math.apy",  # output contains current date/time — non-deterministic
 }
 
 _EXAMPLE_PARAMS = sorted(p for p in EXAMPLES_DIR.glob("*.apy") if p.name not in _EXCLUDED)

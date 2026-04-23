@@ -1,0 +1,43 @@
+# arabicpython/aliases/time.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `time` standard-library module (NOT datetime.time).
+# The Arabic module name is "وقت_نظام" to distinguish it from "وقت" which
+# is the Arabic name for the datetime.time *class* inside "مكتبة_تاريخ".
+#
+# Normalization:
+#   نمة → نمه  (sleep — final ة→ه)
+#   بنية_وقت stays as-is (mid-ة, last char ت from "وقت")
+#   إزاحة → ازاحه  (إ→ا, final ة→ه)
+
+[meta]
+arabic_name   = "وقت_نظام"
+python_module = "time"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Suspend execution ─────────────────────────────────────────────────────────
+"نمه"                   = "sleep"
+
+# ── Current-time functions ────────────────────────────────────────────────────
+"وقت_حالي"              = "time"
+"وقت_عالمي"             = "gmtime"
+"وقت_محلي"              = "localtime"
+"نص_الوقت"              = "ctime"
+"اصنع_وقت"              = "mktime"
+
+# ── High-resolution clocks ────────────────────────────────────────────────────
+"عداد_الاداء"            = "perf_counter"
+"عداد_الاداء_نانو"       = "perf_counter_ns"
+"وقت_رتيب"              = "monotonic"
+"وقت_معالج"             = "process_time"
+
+# ── Data types ────────────────────────────────────────────────────────────────
+"بنية_وقت"              = "struct_time"
+
+# ── Timezone info (module-level attributes) ───────────────────────────────────
+"اسم_منطقة_الزمن"       = "tzname"
+"ازاحه"                  = "timezone"
+"توقيت_صيفي"             = "daylight"

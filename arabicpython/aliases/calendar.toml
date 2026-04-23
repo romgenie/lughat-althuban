@@ -1,0 +1,36 @@
+# arabicpython/aliases/calendar.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `calendar` standard-library module.
+# arabic_name = "روزنامه" (calendar/almanac — final ة→ه normalization).
+#
+# Normalization:
+#   كبيسة → كبيسه  (final ة→ه)
+#   هل_كبيسة → هل_كبيسه  (last char of full identifier ة→ه)
+
+[meta]
+arabic_name   = "روزنامه"
+python_module = "calendar"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Formatting functions ──────────────────────────────────────────────────────
+"عرض_شهر"               = "month"
+"عرض_تقويم"             = "calendar"
+"ايام_الشهر"             = "monthrange"
+
+# ── Leap-year helpers ─────────────────────────────────────────────────────────
+"هل_كبيسه"               = "isleap"
+"ايام_كبيسه"             = "leapdays"
+
+# ── Name sequences ────────────────────────────────────────────────────────────
+"اسماء_الاشهر"           = "month_name"
+"اسماء_الاشهر_مختصره"    = "month_abbr"
+"اسماء_الايام"           = "day_name"
+"اسماء_الايام_مختصره"    = "day_abbr"
+
+# ── Configuration ─────────────────────────────────────────────────────────────
+"ضع_يوم_البدايه"         = "setfirstweekday"
+"يوم_البدايه"            = "firstweekday"
