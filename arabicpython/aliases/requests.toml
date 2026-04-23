@@ -1,0 +1,75 @@
+# arabicpython/aliases/requests.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `requests` library (v2.32+).
+# All Arabic keys must round-trip through normalize_identifier() unchanged.
+# No two Arabic keys may share the same Python attribute value.
+# Sorted alphabetically by Python attribute name within each group.
+#
+# Curation notes (ADR 0003):
+#   - MSA over dialect throughout.
+#   - Response *instance* attributes (status_code, text, json, …) are NOT listed
+#     here because ModuleProxy covers module-level names only. A future "class
+#     proxy" packet will add instance-level aliases. The demo (B01_http.apy)
+#     accesses response.status_code in English to document this limitation.
+#   - "رأس" (head) is stored as "راس" because normalize_identifier folds
+#     hamza-above (أ → ا).
+#   - Words ending in ta-marbuta (ة) are stored with heh (ه) because
+#     normalize_identifier converts the final ta-marbuta to heh.
+#   - HTTPBasicAuth / HTTPDigestAuth are NOT exported at requests top-level;
+#     use dotted paths "auth.HTTPBasicAuth" / "auth.HTTPDigestAuth".
+#   - SSLError, InvalidHeader, InvalidURL, MissingSchema are also NOT exported
+#     at top-level; use "exceptions.<Name>" dotted paths.
+
+[meta]
+arabic_name  = "طلبات"
+python_module = "requests"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer   = "—"
+
+[entries]
+# ── HTTP verbs ──────────────────────────────────────────────────────────────
+"احذف"              = "delete"
+"احصل"              = "get"
+"اطلب"              = "request"
+"خيارات"            = "options"
+"راس"               = "head"         # رأس → راس after normalize_identifier hamza fold
+"ضع"                = "put"
+"عدل"               = "patch"
+"نشر"               = "post"
+
+# ── Classes ─────────────────────────────────────────────────────────────────
+"استجابه"           = "Response"     # استجابة → استجابه (ta-marbuta fold)
+"جلسه"              = "Session"      # جلسة → جلسه (ta-marbuta fold)
+"طلب"               = "Request"
+"طلب_محضر"          = "PreparedRequest"
+
+# ── Authentication ───────────────────────────────────────────────────────────
+"مصادقه_اساسيه"     = "auth.HTTPBasicAuth"    # not exported at top level
+"مصادقه_هضم"        = "auth.HTTPDigestAuth"    # not exported at top level
+
+# ── Exceptions ───────────────────────────────────────────────────────────────
+"خطا_اتصال"         = "ConnectionError"
+"خطا_اتصال_مهله"    = "ConnectTimeout"
+"خطا_بروتوكول"      = "HTTPError"
+"خطا_راس_غير_صالح"  = "exceptions.InvalidHeader"    # not exported at top level
+"خطا_url_غير_صالح"  = "exceptions.InvalidURL"       # not exported at top level
+"خطا_طلب"           = "RequestException"
+"خطا_ssl"           = "exceptions.SSLError"          # not exported at top level
+"خطا_كثير_تحويلات"  = "TooManyRedirects"
+"خطا_مهله"          = "Timeout"
+"خطا_نقص_المخطط"    = "exceptions.MissingSchema"    # not exported at top level
+"خطا_قراءه"         = "ReadTimeout"
+"خطا_url_مطلوب"     = "URLRequired"
+
+# ── Submodules and utilities ─────────────────────────────────────────────────
+"ادوات"             = "utils"        # أدوات → ادوات (hamza fold)
+"استثناءات"         = "exceptions"
+"جلسات"             = "sessions"
+"رموز_الحاله"       = "codes"        # رموز الحالة → رموز_الحاله (ta-marbuta fold)
+"كوكيز"             = "cookies"
+"محول_http"         = "adapters.HTTPAdapter"
+"محولات"            = "adapters"
+"مصادقه"            = "auth"
+"نماذج"             = "models"

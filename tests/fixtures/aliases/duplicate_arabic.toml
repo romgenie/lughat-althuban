@@ -1,0 +1,15 @@
+# Fixture: two different Arabic keys map to the same Python attribute value.
+# Expected: AliasMappingError listing both Arabic keys and the shared Python name.
+# Note: TOML allows two *different* keys with the same value; the loader must
+# catch this semantic duplicate even though the TOML is syntactically valid.
+
+[meta]
+arabic_name   = "نظام"
+python_module = "sys"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+"وسائط"  = "argv"
+"معطيات" = "argv"

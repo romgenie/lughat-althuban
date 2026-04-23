@@ -32,6 +32,7 @@ dev = [
     "pytest-cov>=5.0",
     "ruff>=0.6",
     "black>=24.0",
+    "requests>=2.32",
 ]
 
 [project.scripts]
@@ -55,3 +56,6 @@ target-version = ["py311"]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = "-ra --strict-markers"
+markers = [
+    "network: marks tests that make real HTTP calls (deselect with -m 'not network')",
+]

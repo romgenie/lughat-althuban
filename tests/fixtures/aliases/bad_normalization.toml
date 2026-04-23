@@ -1,0 +1,13 @@
+# Fixture: an Arabic key that does not round-trip through normalize_identifier().
+# "وَسائط" contains a fatha (U+064E) on the waw; normalize_identifier strips
+# it to "وسائط", so the key ≠ its normalized form → AliasMappingError.
+
+[meta]
+arabic_name   = "نظام"
+python_module = "sys"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+"وَسائط" = "argv"

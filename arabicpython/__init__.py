@@ -5,6 +5,9 @@ keywords to their Python equivalents at the tokenize layer, then handing
 the result to the standard CPython compiler. The public API installs an
 import hook for ``.apy`` modules, runs an interactive REPL, and rewrites
 tracebacks so errors point back at the original Arabic source.
+
+Phase B adds library aliases: Arabic module names that transparently proxy
+third-party and stdlib modules via ``arabicpython.aliases``.
 """
 
 __version__ = "0.0.1"
@@ -21,3 +24,5 @@ from arabicpython.tracebacks import (
 from arabicpython.tracebacks import (
     uninstall_excepthook as uninstall_excepthook,
 )
+from arabicpython.aliases import install as install_aliases  # noqa: E402
+from arabicpython.aliases import uninstall as uninstall_aliases

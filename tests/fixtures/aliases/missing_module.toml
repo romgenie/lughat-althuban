@@ -1,0 +1,12 @@
+# Fixture: references a module that does not exist.
+# Expected: AliasMappingError mentioning the module name and "not importable".
+
+[meta]
+arabic_name   = "وهمي"
+python_module = "this_module_does_not_exist_xyz_apython"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+"شيء" = "something"
