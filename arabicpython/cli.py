@@ -32,9 +32,11 @@ def main(argv: "list[str] | None" = None) -> int:
     """
     from arabicpython.import_hook import install
     from arabicpython.tracebacks import install_excepthook, print_translated_exception
+    from arabicpython.aliases import install as install_aliases
 
     _configure_utf8_streams()
     install()
+    install_aliases()
     install_excepthook()
 
     if argv is None:

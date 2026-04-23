@@ -1,0 +1,54 @@
+# arabicpython/aliases/pathlib.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `pathlib` standard-library module.
+# All Arabic keys round-trip through normalize_identifier() unchanged.
+# Sorted alphabetically by Python attribute name.
+#
+# Architecture note (B-030):
+#   pathlib exposes only 7 names at module level (Path, PurePath, …).
+#   The remaining 19 entries use dotted paths ("Path.exists", etc.) to
+#   surface commonly-used *methods* of pathlib.Path as module-level names.
+#   These resolve to *unbound* methods; call them with an explicit Path
+#   instance: `مسار_مكتبه.موجود(p)` ≡ `pathlib.Path.exists(p)`.
+#   Path *properties* (name, suffix, parent, …) are intentionally omitted
+#   because dotted-path resolution returns the descriptor object, not a
+#   value. A future "class proxy" packet will add instance-level aliases.
+
+[meta]
+arabic_name   = "مسار_مكتبه"
+python_module = "pathlib"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Module-level classes ─────────────────────────────────────────────────────
+"مسار"                  = "Path"
+"مسار_لينكس"            = "PosixPath"
+"مسار_بحت"              = "PurePath"
+"مسار_بحت_بوزكس"        = "PurePosixPath"
+"مسار_بحت_ويندوز"       = "PureWindowsPath"
+"مسار_ويندوز"           = "WindowsPath"
+
+# ── Path class methods (unbound; call with explicit Path instance) ────────────
+"موجود"                 = "Path.exists"
+"كرر"                   = "Path.glob"
+"هل_دليل"               = "Path.is_dir"
+"هل_ملف"                = "Path.is_file"
+"هل_رمز_رابط"           = "Path.is_symlink"
+"انشئ_دليلا"            = "Path.mkdir"
+"افتح"                  = "Path.open"
+"اقرا_بايتات"           = "Path.read_bytes"
+"اقرا_نص"               = "Path.read_text"
+"انقل_الي"              = "Path.rename"
+"مطلق"                  = "Path.resolve"
+"كرر_متكررا"            = "Path.rglob"
+"احذف_دليلا"            = "Path.rmdir"
+"انشئ_ملف"              = "Path.touch"
+"احذف_الملف"            = "Path.unlink"
+"سر"                    = "Path.walk"    # Python 3.12+; test skips on 3.11
+"مع_اسم"                = "Path.with_name"
+"مع_لاحقه"              = "Path.with_suffix"
+"اكتب_بايتات"           = "Path.write_bytes"
+"اكتب_نص"               = "Path.write_text"

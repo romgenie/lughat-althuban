@@ -131,7 +131,8 @@ def run_apy_program(
 
 # helper.apy is an importee, not a runnable program.
 # B01_http.apy makes live HTTP calls — excluded from the compat suite.
-_EXCLUDED = {"helper.apy", "B01_http.apy"}
+# B30_filesystem_walk.apy requires a CLI argument (directory path) — excluded.
+_EXCLUDED = {"helper.apy", "B01_http.apy", "B30_filesystem_walk.apy"}
 
 _EXAMPLE_PARAMS = sorted(
     p for p in EXAMPLES_DIR.glob("*.apy") if p.name not in _EXCLUDED

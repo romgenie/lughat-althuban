@@ -1,0 +1,75 @@
+# arabicpython/aliases/os.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `os` standard-library module.
+# All Arabic keys round-trip through normalize_identifier() unchanged:
+#   - hamza variants (أ/إ/آ) → plain alef (ا)
+#   - final ta-marbuta (ة) → heh (ه)
+#   - final alef-maksura (ى) → ya (ي)
+#   - no harakat, no tatweel
+#
+# Sorted alphabetically by Python attribute name (the value).
+# os.path is intentionally NOT mapped — reachable as the English tail
+# `نظام_تشغيل.path.join(...)` via ModuleProxy ASCII fallthrough.
+
+[meta]
+arabic_name   = "نظام_تشغيل"
+python_module = "os"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Types / protocols ────────────────────────────────────────────────────────
+"مدخل_الدليل"          = "DirEntry"
+"يشبه_المسار"          = "PathLike"
+
+# ── Hard process exit ────────────────────────────────────────────────────────
+"اخرج_فورا"            = "_exit"         # no cleanup; shares اخرج root with sys.exit
+
+# ── Access & permissions ─────────────────────────────────────────────────────
+"تحقق_الوصول"          = "access"
+"غير_الصلاحيات"        = "chmod"
+
+# ── Path separators & filesystem constants ────────────────────────────────────
+"فاصل_المسار_البديل"   = "altsep"        # None on POSIX
+"عدد_المعالجات"        = "cpu_count"
+"الدليل_الحالي_رمز"    = "curdir"        # the string "."
+"جهاز_الفراغ"          = "devnull"       # /dev/null or nul
+"متغيرات_البيئه"       = "environ"       # live mapping of environment variables
+"فاصل_الامتداد"        = "extsep"        # "."
+"مسار_نصي"             = "fspath"
+"مسارات_التنفيذ"       = "get_exec_path"
+"حجم_الطرفيه"          = "get_terminal_size"
+"الدليل_الحالي"        = "getcwd"
+"احصل_متغير_بيئه"      = "getenv"
+"معرف_العمليه"         = "getpid"
+"معرف_العمليه_الاب"    = "getppid"
+"هل_طرفيه"             = "isatty"
+"انشئ_رابط_صلب"        = "link"
+"فاصل_السطر"           = "linesep"
+"اسرد_الدليل"          = "listdir"
+"انشئ_دلائل"           = "makedirs"
+"انشئ_دليل"            = "mkdir"
+"اسم_النظام"           = "name"          # "posix" or "nt"
+"الدليل_الاب_رمز"      = "pardir"        # the string ".."
+"فاصل_مسارات"          = "pathsep"       # ":" on POSIX, ";" on Windows
+"انشئ_انبوب"           = "pipe"
+"افتح_امر"             = "popen"
+"ضع_متغير_بيئه"        = "putenv"
+"اقرا_رمز_رابط"        = "readlink"
+"احذف_ملف"             = "remove"
+"احذف_دلائل"           = "removedirs"
+"اعد_تسميه"            = "rename"
+"اعد_تسميه_متعدد"      = "renames"
+"استبدل"               = "replace"
+"احذف_دليل"            = "rmdir"
+"مسح_الدليل"           = "scandir"
+"فاصل_المسار"          = "sep"
+"معلومات_الملف"        = "stat"
+"انشئ_رمز_رابط"        = "symlink"
+"نفذ_امر"              = "system"
+"احذف_رابط"            = "unlink"
+"بايتات_عشوائيه"       = "urandom"
+"سر_شجره"              = "walk"
+"غير_الدليل"           = "chdir"

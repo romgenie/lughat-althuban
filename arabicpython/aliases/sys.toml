@@ -1,0 +1,52 @@
+# arabicpython/aliases/sys.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `sys` standard-library module.
+# All Arabic keys round-trip through normalize_identifier() unchanged.
+# Sorted alphabetically by Python attribute name.
+#
+# Cross-consistency notes (documented per B-030 spec §Cross-consistency):
+#   - sys.path → مسارات_الاستيراد ("import-search paths")
+#     os has no equivalent module-level name; pathlib has no sys.path analog.
+#     Deliberately different from pathlib.Path (مسار) — different concepts.
+#   - sys.exit → اخرج; os._exit → اخرج_فورا.
+#     Both share the root اخرج; the modifier فورا ("immediately") signals
+#     that os._exit bypasses cleanup.
+
+[meta]
+arabic_name   = "نظام"
+python_module = "sys"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Command line & streams ────────────────────────────────────────────────────
+"الوسائط"               = "argv"
+"قاموس_المنفذ"          = "executable"   # path to python interpreter; قاموس deliberate (spec floor)
+"اخرج"                  = "exit"         # sys.exit; shares اخرج root with os._exit
+
+# ── Standard streams ──────────────────────────────────────────────────────────
+"معيار_الاخراج"         = "stdout"
+"معيار_الادخال"         = "stdin"
+"معيار_الخطا"           = "stderr"
+
+# ── Platform & version ────────────────────────────────────────────────────────
+"هرس_الاستثناء"         = "excepthook"
+"اعلام_التشغيل"         = "flags"         # runtime flags namespace
+"بيئه_التنفيذ"          = "implementation"
+"الوحدات"               = "modules"       # the module cache; writable
+"مسارات_الاستيراد"      = "path"          # sys.path — import search list
+"المنصه"                = "platform"      # "linux", "win32", "darwin", …
+
+# ── Recursion limit ───────────────────────────────────────────────────────────
+"حد_العوديه"            = "getrecursionlimit"
+"اضبط_حد_العوديه"       = "setrecursionlimit"
+
+# ── Memory & encoding ─────────────────────────────────────────────────────────
+"معلومات_الذاكره"       = "getallocatedblocks"
+"الترميز_الافتراضي"     = "getdefaultencoding"
+"ترميز_نظام_الملفات"    = "getfilesystemencoding"
+"حجم_الكائن"            = "getsizeof"     # spec said حجم_العداد but "object size" is clearer
+"الاصدار"               = "version"
+"معلومات_الاصدار"       = "version_info"
