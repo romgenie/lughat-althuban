@@ -55,6 +55,8 @@ Any program that runs on Phase A's last release runs unchanged on every Phase B 
 - A CI gate that fails the build if any Phase A test fails after Phase B changes.
 - A versioned-dictionary mechanism (B.0) so that even if `ar-v2` reorders or renames terms, files declaring `ar-v1` keep working.
 
+Implementation: B-002 (`tests/test_phase_a_compat.py`).
+
 This promise covers the source-level `.apy` syntax and the keyword dictionary. It does **not** cover internal APIs (`arabicpython.translate`, `arabicpython.dialect`); those may evolve with normal deprecation cycles.
 
 ### B.4 Phase B success criterion

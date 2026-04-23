@@ -241,7 +241,7 @@ ADR 0008.B.3 commits to: **any program that runs on Phase A's last release runs 
 
 Concretely, this means:
 
-- The seven examples in `examples/` (01_hello.apy through 07_imports.apy) and the apps in `apps/` are pinned in CI via `tests/test_phase_a_compat.py` (created in B-002).
+- The seven examples in `examples/` (01_hello.apy through 07_imports.apy) and the apps in `apps/` are pinned in CI via `tests/test_phase_a_compat.py`.
 - The keyword dictionary `dictionaries/ar-v1.md` is **immutable**. New keywords go into `ar-v1.1.md` (additive only) or `ar-v2.md` (with a superseding ADR). Files declaring `# apython: dict=ar-v1` keep their original lookup table.
 - Internal APIs (`arabicpython.translate`, `arabicpython.dialect`, `arabicpython.normalize`) may change with normal deprecation cycles, but the public API listed in README.md does not.
 
