@@ -383,7 +383,10 @@ def test_cli_installs_hook(tmp_path, capsys):
 
 
 def test_relative_import_arabic_keyword_translates(fixtures_on_path):
-    """من . استورد must work inside __init__.apy (was broken: `استورد` after `.` skipped keyword table)."""
+    """من . استورد must work inside __init__.apy.
+
+    (was broken: `استورد` after `.` skipped keyword table).
+    """
     install()
     import apkg_rel  # noqa: F401 — exercises relative import in __init__.apy
 
