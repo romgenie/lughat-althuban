@@ -59,6 +59,13 @@ def main(argv: "list[str] | None" = None) -> int:
     if argv is None:
         argv = sys.argv[1:]
 
+    # ── Subcommand dispatch ───────────────────────────────────────────────────
+    # `ثعبان اختبر [pytest-args]` — Arabic test runner (B-051).
+    if argv and argv[0] == "اختبر":
+        from arabicpython.test_runner import run_tests
+
+        return run_tests(argv[1:])
+
     parser = argparse.ArgumentParser(
         prog="ثعبان",
         usage="ثعبان [-h] [--version] [--dict VERSION] [-c CODE] [FILE] [args ...]",
