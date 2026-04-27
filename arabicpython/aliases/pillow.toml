@@ -1,0 +1,58 @@
+# arabicpython/aliases/pillow.toml
+# B-018: Arabic aliases for the Pillow image processing library.
+#
+# Arabic import name : صور
+# Python module      : PIL.Image
+#
+# Design notes:
+#   - We wrap PIL.Image (the core submodule) rather than PIL itself, because
+#     PIL's top-level exports almost nothing useful.
+#   - Instance methods (resize, crop, rotate, save, …) are NOT covered here;
+#     ModuleProxy is module-level only. A future class-proxy packet will add them.
+#   - "افتح" (open) collides with pathlib's entry; we use "افتح_صوره" instead.
+#   - Resampling constants (LANCZOS, BICUBIC, …) are top-level int aliases in
+#     PIL.Image for backward compat; the modern Pillow also has Image.Resampling
+#     enum but the int constants are stable across versions.
+#   - All Arabic keys round-trip through normalize_identifier() unchanged.
+#     ta-marbuta (ة→ه), hamza-above-alef (أ/إ/آ→ا), alef-maqsura (ى→ي).
+
+[meta]
+arabic_name    = "صور"
+python_module  = "PIL.Image"
+dict_version   = "ar-v1"
+schema_version = 1
+maintainer     = "—"
+
+[entries]
+# ── Core functions ────────────────────────────────────────────────────────────
+"افتح_صوره"          = "open"           # open an image file
+"جديد"               = "new"            # create blank image
+"من_مصفوفه"          = "fromarray"      # مصفوفة→مصفوفه; from numpy array
+"من_بايتات"          = "frombytes"      # from raw bytes
+"من_مخزن"            = "frombuffer"     # from a buffer object
+"ادمج_قنوات"         = "merge"          # merge single-band images into multi-band
+"امزج"               = "blend"          # linear blend of two images
+"مركب"               = "composite"      # composite using a mask
+"مركب_شفافيه"        = "alpha_composite" # شفافية→شفافيه; alpha compositing
+
+# ── The Image class itself ────────────────────────────────────────────────────
+"فئه_الصوره"         = "Image"          # فئة→فئه; the PIL.Image.Image class
+
+# ── Resampling filters ────────────────────────────────────────────────────────
+"اقرب"               = "NEAREST"        # nearest-neighbour (fastest, lowest quality)
+"لانكزوس"            = "LANCZOS"        # Lanczos (slowest, highest quality)
+"ثنائي_خطي"          = "BILINEAR"       # bilinear interpolation
+"تكعيبي"             = "BICUBIC"        # bicubic interpolation
+"صندوقي"             = "BOX"            # box (area average) filter
+"هامينغ"             = "HAMMING"        # Hamming filter
+
+# ── Transpose / flip / rotate constants ──────────────────────────────────────
+"اقلب_افقيا"         = "FLIP_LEFT_RIGHT"
+"اقلب_عموديا"        = "FLIP_TOP_BOTTOM"
+"دوران_90"           = "ROTATE_90"
+"دوران_180"          = "ROTATE_180"
+"دوران_270"          = "ROTATE_270"
+
+# ── Exceptions ────────────────────────────────────────────────────────────────
+"خطا_صوره_مجهوله"    = "UnidentifiedImageError"   # مجهولة→مجهوله
+"خطا_ضغط_انفجاري"   = "DecompressionBombError"
