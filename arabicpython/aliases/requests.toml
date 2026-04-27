@@ -47,25 +47,38 @@ maintainer   = "—"
 
 # ── Authentication ───────────────────────────────────────────────────────────
 "مصادقه_اساسيه"     = "auth.HTTPBasicAuth"    # not exported at top level
+"مصادقه_قاعده"      = "auth.AuthBase"          # base class for custom auth handlers
 "مصادقه_هضم"        = "auth.HTTPDigestAuth"    # not exported at top level
+"مصادقه_وكيل"       = "auth.HTTPProxyAuth"     # proxy authentication
 
 # ── Exceptions ───────────────────────────────────────────────────────────────
 "خطا_اتصال"         = "ConnectionError"
 "خطا_اتصال_مهله"    = "ConnectTimeout"
+"خطا_المخطط"        = "exceptions.InvalidSchema"       # unknown scheme (ftp://, etc.)
 "خطا_بروتوكول"      = "HTTPError"
-"خطا_راس_غير_صالح"  = "exceptions.InvalidHeader"    # not exported at top level
-"خطا_url_غير_صالح"  = "exceptions.InvalidURL"       # not exported at top level
+"خطا_بث_مستهلك"     = "exceptions.StreamConsumedError" # response body already consumed
+"خطا_جسم"           = "exceptions.UnrewindableBodyError"
+"خطا_راس_غير_صالح"  = "exceptions.InvalidHeader"       # not exported at top level
+"خطا_رابط_وكيل"     = "exceptions.InvalidProxyURL"
+"خطا_url_غير_صالح"  = "exceptions.InvalidURL"          # not exported at top level
 "خطا_طلب"           = "RequestException"
-"خطا_ssl"           = "exceptions.SSLError"          # not exported at top level
+"خطا_ssl"           = "exceptions.SSLError"             # not exported at top level
 "خطا_كثير_تحويلات"  = "TooManyRedirects"
+"خطا_كوكيز"         = "cookies.CookieConflictError"
 "خطا_مهله"          = "Timeout"
-"خطا_نقص_المخطط"    = "exceptions.MissingSchema"    # not exported at top level
+"خطا_نقص_المخطط"    = "exceptions.MissingSchema"       # not exported at top level
+"خطا_وكيل"          = "exceptions.ProxyError"
 "خطا_قراءه"         = "ReadTimeout"
+"خطا_ترميز_مقطع"    = "exceptions.ChunkedEncodingError"
+"خطا_فك_محتوي"      = "exceptions.ContentDecodingError"
+"خطا_اعاده_محاوله"  = "exceptions.RetryError"
+"خطا_json"          = "exceptions.JSONDecodeError"
 "خطا_url_مطلوب"     = "URLRequired"
 
 # ── Submodules and utilities ─────────────────────────────────────────────────
 "ادوات"             = "utils"        # أدوات → ادوات (hamza fold)
 "استثناءات"         = "exceptions"
+"انشئ_جلسه"         = "session"      # factory function (lowercase) → new Session
 "جلسات"             = "sessions"
 "رموز_الحاله"       = "codes"        # رموز الحالة → رموز_الحاله (ta-marbuta fold)
 "كوكيز"             = "cookies"
@@ -73,3 +86,8 @@ maintainer   = "—"
 "محولات"            = "adapters"
 "مصادقه"            = "auth"
 "نماذج"             = "models"
+
+# ── Structures ───────────────────────────────────────────────────────────────
+"قاموس_بحث"         = "structures.LookupDict"
+"قاموس_غير_حساس"    = "structures.CaseInsensitiveDict"  # case-insensitive header dict
+"وعاء_كوكيز"        = "cookies.RequestsCookieJar"

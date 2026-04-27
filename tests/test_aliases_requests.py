@@ -99,3 +99,128 @@ def test_requests_proxy_dir_and_repr(طلبات: ModuleProxy) -> None:
     r = repr(طلبات)
     assert "requests" in r
     assert "طلبات" in r
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# B-014 extras — auth, exceptions, structures
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+class TestB014Auth:
+    def test_auth_base(self, طلبات):
+        import requests.auth
+
+        assert طلبات.مصادقه_قاعده is requests.auth.AuthBase
+
+    def test_http_proxy_auth(self, طلبات):
+        import requests.auth
+
+        assert طلبات.مصادقه_وكيل is requests.auth.HTTPProxyAuth
+
+    def test_custom_auth_subclass(self, طلبات):
+        """AuthBase is actually usable as a base class."""
+
+        class MyAuth(طلبات.مصادقه_قاعده):
+            def __call__(self, r):
+                return r
+
+        import requests
+
+        s = requests.Session()
+        s.auth = MyAuth()
+        assert isinstance(s.auth, طلبات.مصادقه_قاعده)
+
+
+class TestB014Exceptions:
+    def test_proxy_error(self, طلبات):
+        import requests.exceptions
+
+        assert طلبات.خطا_وكيل is requests.exceptions.ProxyError
+
+    def test_chunked_encoding_error(self, طلبات):
+        import requests.exceptions
+
+        assert طلبات.خطا_ترميز_مقطع is requests.exceptions.ChunkedEncodingError
+
+    def test_content_decoding_error(self, طلبات):
+        import requests.exceptions
+
+        assert طلبات.خطا_فك_محتوي is requests.exceptions.ContentDecodingError
+
+    def test_retry_error(self, طلبات):
+        import requests.exceptions
+
+        assert طلبات.خطا_اعاده_محاوله is requests.exceptions.RetryError
+
+    def test_stream_consumed_error(self, طلبات):
+        import requests.exceptions
+
+        assert طلبات.خطا_بث_مستهلك is requests.exceptions.StreamConsumedError
+
+    def test_invalid_schema_error(self, طلبات):
+        import requests.exceptions
+
+        assert طلبات.خطا_المخطط is requests.exceptions.InvalidSchema
+
+    def test_json_decode_error(self, طلبات):
+        import requests.exceptions
+
+        assert طلبات.خطا_json is requests.exceptions.JSONDecodeError
+
+    def test_invalid_proxy_url_error(self, طلبات):
+        import requests.exceptions
+
+        assert طلبات.خطا_رابط_وكيل is requests.exceptions.InvalidProxyURL
+
+    def test_cookie_conflict_error(self, طلبات):
+        import requests.cookies
+
+        assert طلبات.خطا_كوكيز is requests.cookies.CookieConflictError
+
+    def test_unwindable_body_error(self, طلبات):
+        import requests.exceptions
+
+        assert طلبات.خطا_جسم is requests.exceptions.UnrewindableBodyError
+
+    def test_exception_hierarchy(self, طلبات):
+        """ChunkedEncodingError, ContentDecodingError, RetryError all inherit RequestException."""
+        assert issubclass(طلبات.خطا_ترميز_مقطع, طلبات.خطا_طلب)
+        assert issubclass(طلبات.خطا_فك_محتوي, طلبات.خطا_طلب)
+        assert issubclass(طلبات.خطا_اعاده_محاوله, طلبات.خطا_طلب)
+
+
+class TestB014Structures:
+    def test_case_insensitive_dict(self, طلبات):
+        import requests.structures
+
+        assert طلبات.قاموس_غير_حساس is requests.structures.CaseInsensitiveDict
+
+    def test_lookup_dict(self, طلبات):
+        import requests.structures
+
+        assert طلبات.قاموس_بحث is requests.structures.LookupDict
+
+    def test_requests_cookie_jar(self, طلبات):
+        import requests.cookies
+
+        assert طلبات.وعاء_كوكيز is requests.cookies.RequestsCookieJar
+
+    def test_case_insensitive_dict_functional(self, طلبات):
+        """CaseInsensitiveDict should treat keys case-insensitively."""
+        headers = طلبات.قاموس_غير_حساس({"Content-Type": "application/json"})
+        assert headers["content-type"] == "application/json"
+        assert headers["CONTENT-TYPE"] == "application/json"
+
+
+class TestB014SessionFactory:
+    def test_session_factory_function(self, طلبات):
+        import requests
+
+        assert طلبات.انشئ_جلسه is requests.session
+
+    def test_session_factory_creates_session(self, طلبات):
+        import requests
+
+        s = طلبات.انشئ_جلسه()
+        assert isinstance(s, requests.Session)
+        s.close()
