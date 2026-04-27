@@ -1,0 +1,85 @@
+# arabicpython/aliases/pandas.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `pandas` third-party library.
+# Normalization:
+#   أ/إ/آ → ا  anywhere
+#   final ة → ه
+#   final ى → ي
+#
+# Scope: core data structures, top-level readers, combination utilities,
+# datetime helpers, NA handling, and options.  DataFrame/Series method
+# names are attributes and accessed via proxy attribute lookup — a future
+# B-017b packet will cover them comprehensively.
+#
+# Collision notes:
+#   جلسه → flask/requests; جلسات → requests. Not used here.
+#   ادمج → datetime.combine uses ادمج; ادمج_بيانات (merge data) is free.
+#   نطاق → re; نطاق_تاريخ / نطاق_فتره carry _تاريخ/_فتره suffix.
+#   فرق_زمني → datetime module key; فرق_زمني_باندا used here.
+#   طابع_زمني → datetime module key; طابع_زمني_باندا used here.
+#   خيارات → requests; اضبط_خيار/احضر_خيار/اعد_خيار used here (verb forms).
+
+[meta]
+arabic_name   = "بانداس"
+python_module = "pandas"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Core data structures ──────────────────────────────────────────────────────
+"اطار_بيانات"           = "DataFrame"
+"سلسله_بيانات"          = "Series"
+"فهرس"                  = "Index"
+"فهرس_متعدد"            = "MultiIndex"
+"فهرس_نطاق"             = "RangeIndex"
+"فهرس_تاريخ"            = "DatetimeIndex"
+"فهرس_فئوي"             = "CategoricalIndex"
+
+# ── Readers ───────────────────────────────────────────────────────────────────
+"اقرا_csv"              = "read_csv"
+"اقرا_اكسل"             = "read_excel"
+"اقرا_json"             = "read_json"
+"اقرا_sql"              = "read_sql"
+"اقرا_parquet"          = "read_parquet"
+"اقرا_html"             = "read_html"
+
+# ── Combination utilities ─────────────────────────────────────────────────────
+"ادمج_بيانات"           = "concat"
+"اندمج"                 = "merge"
+"جدول_تقاطع"            = "crosstab"
+"جدول_محوري"            = "pivot_table"
+"ترميز_وهمي"            = "get_dummies"
+
+# ── Type conversion helpers ───────────────────────────────────────────────────
+"لتاريخ"                = "to_datetime"
+"لفرق_زمني"             = "to_timedelta"
+"لرقمي"                 = "to_numeric"
+
+# ── Date / period range generators ───────────────────────────────────────────
+"نطاق_تاريخ"            = "date_range"
+"نطاق_فتره"             = "period_range"
+
+# ── Categorical and binning ───────────────────────────────────────────────────
+"فئوي"                  = "Categorical"
+"قطع"                   = "cut"
+"قطع_متكافئ"            = "qcut"
+
+# ── Missing-value detection ───────────────────────────────────────────────────
+"هل_مفقود"              = "isna"
+"ليس_مفقودا"            = "notna"
+
+# ── NA sentinels ──────────────────────────────────────────────────────────────
+"مفقود"                 = "NA"
+"تاريخ_مفقود"           = "NaT"
+
+# ── Time types ────────────────────────────────────────────────────────────────
+"طابع_زمني_باندا"       = "Timestamp"
+"فرق_زمني_باندا"        = "Timedelta"
+"فتره"                  = "Period"
+
+# ── Options API ───────────────────────────────────────────────────────────────
+"اضبط_خيار"             = "set_option"
+"احضر_خيار"             = "get_option"
+"اعد_خيار"              = "reset_option"

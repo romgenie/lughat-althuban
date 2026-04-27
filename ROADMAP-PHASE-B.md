@@ -53,8 +53,8 @@ One packet per library. All depend on B-001 (which already covers `requests` its
 | B-013 | aliases-sqlalchemy-v1 | B-001 | M | stub | ? | no (semantic depth) |
 | B-014 | aliases-requests-extras-v1 — session/auth surface omitted from B-001 | B-001 | S | stub | ? | **yes** |
 | B-015 | aliases-pytest-v1 | B-001 | M | stub | ? | yes |
-| B-016 | aliases-numpy-core-v1 | B-001 | L | stub | ? | no (large surface) |
-| B-017 | aliases-pandas-core-v1 | B-001, B-016 | L | stub | ? | no (large surface) |
+| B-016 | aliases-numpy-core-v1 | B-001 | L | merged | — | no (large surface) |
+| B-017 | aliases-pandas-core-v1 | B-001, B-016 | L | merged | — | no (large surface) |
 | B-018 | aliases-pillow-v1 | B-001 | S | stub | ? | **yes** |
 
 **Pickup advice:** B-014 (`requests` extras) and B-018 (`pillow`) are the smallest. B-016, B-017 are real research projects — claim only if you use the library professionally.

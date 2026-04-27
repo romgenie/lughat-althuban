@@ -1,0 +1,142 @@
+# arabicpython/aliases/numpy.toml
+# Schema version: 1
+#
+# Maps Arabic names to the `numpy` third-party library.
+# Normalization:
+#   أ/إ/آ → ا  anywhere
+#   final ة → ه
+#   final ى → ي
+#
+# Scope: core array creation, manipulation, math, stats, logic, IO, and
+# the two major submodules.  dtype-specific names (int8, float32, …) and
+# the full ufunc surface are left to a future B-016b packet.
+#
+# Collision notes:
+#   سقف/ارضيه/اسيه/لوغاريتم → math.toml already uses the root.
+#     numpy variants carry _صفيف suffix to stay distinct.
+#   ضغط → itertools.compress; use ضيق (squeeze/narrow) for np.squeeze.
+#   جذر/جذر_صحيح → math; جذر_تربيعي (square root) is safe.
+#   مجموع_دقيق → math.fsum; مجموع (plain sum) is free.
+#   وسط/تباين/انحراف → statistics; متوسط/تشتت/انحراف_معياري used here.
+#   وسيط → statistics.median; وسيط_صفيف used here.
+#   الكل/اي → Python builtins translated in ar-v2 keywords; safe as entry keys.
+
+[meta]
+arabic_name   = "نمباي"
+python_module = "numpy"
+dict_version  = "ar-v1"
+schema_version = 1
+maintainer    = "—"
+
+[entries]
+# ── Array creation ────────────────────────────────────────────────────────────
+"مصفوفه"                = "array"
+"اصفار"                 = "zeros"
+"وحدات"                 = "ones"
+"فارغه"                 = "empty"
+"ممتلئه"                = "full"
+"مدي"                   = "arange"           # مدى normalizes to مدي (final ى→ي)
+"فضاء_خطي"              = "linspace"
+"فضاء_لوغاريتمي"        = "logspace"
+"عين"                   = "eye"
+"هويه"                  = "identity"
+"اصفار_مثله"            = "zeros_like"
+"وحدات_مثله"            = "ones_like"
+"فارغه_مثله"            = "empty_like"
+"ممتلئه_مثله"           = "full_like"
+"شبكه"                  = "meshgrid"
+"محور_جديد"             = "newaxis"
+
+# ── Array manipulation ────────────────────────────────────────────────────────
+"اعد_شكل"               = "reshape"
+"بسط"                   = "ravel"
+"ضيق"                   = "squeeze"
+"وسع_ابعاد"             = "expand_dims"
+"الصق"                  = "concatenate"
+"كدس"                   = "stack"
+"كدس_افقي"              = "hstack"
+"كدس_راسي"              = "vstack"           # رأسي → راسي (أ→ا)
+"كدس_عمقي"              = "dstack"
+"قسم_صفيف"              = "split"
+"قسم_افقي"              = "hsplit"
+"قسم_راسي"              = "vsplit"           # رأسي → راسي (أ→ا)
+"منقوله"                = "transpose"
+"ادل_محاور"             = "swapaxes"
+"حرك_محور"              = "moveaxis"
+"بلط"                   = "tile"
+"كرر_عناصر"             = "repeat"
+"اقلب"                  = "flip"
+"دحرج"                  = "roll"
+
+# ── Math & reductions ─────────────────────────────────────────────────────────
+"مجموع"                 = "sum"
+"حاصل_ضرب"              = "prod"
+"مجموع_تراكمي"          = "cumsum"
+"ضرب_تراكمي"            = "cumprod"
+"فرق"                   = "diff"
+"قيمه_مطلقه"            = "absolute"
+"اشاره"                 = "sign"
+"حدد_نطاق"              = "clip"
+"جذر_تربيعي"            = "sqrt"
+"مربع"                  = "square"
+"رفع_للقوه"             = "power"
+"اسيه_صفيف"             = "exp"
+"لوغاريتم_صفيف"         = "log"
+
+# ── Linear algebra ────────────────────────────────────────────────────────────
+"ضرب_نقطي"              = "dot"
+"ضرب_مصفوفات"           = "matmul"
+"ضرب_اتجاهي"            = "cross"
+"ضرب_داخلي"             = "inner"
+"ضرب_خارجي"             = "outer"
+"جبر_خطي"               = "linalg"
+
+# ── Statistics ────────────────────────────────────────────────────────────────
+"متوسط"                 = "mean"
+"وسيط_صفيف"             = "median"
+"انحراف_معياري"         = "std"
+"تشتت"                  = "var"
+"ادني_قيمه"             = "min"
+"اعلي_قيمه"             = "max"
+"مئيني"                 = "percentile"
+"كميل"                  = "quantile"
+"معامل_ارتباط"          = "corrcoef"
+"مدرج_تكراري"           = "histogram"
+
+# ── Sorting & searching ───────────────────────────────────────────────────────
+"فريد"                  = "unique"
+"رتب_صفيف"              = "sort"
+"فهارس_ترتيب"           = "argsort"
+"موضع_ادني"             = "argmin"
+"موضع_اعلي"             = "argmax"
+"حيث"                   = "where"
+"غير_صفري"              = "nonzero"
+"عد_غير_صفري"           = "count_nonzero"
+"فهرس_ادراج"            = "searchsorted"
+
+# ── Logic ─────────────────────────────────────────────────────────────────────
+"الكل_صحيح"             = "all"
+"اي_صحيح"               = "any"
+"هل_ناقص"               = "isnan"
+"هل_لانهائي"            = "isinf"
+"هل_منتهي"              = "isfinite"
+"و_منطقي"               = "logical_and"
+"او_منطقي"              = "logical_or"
+"لا_منطقي"              = "logical_not"
+"خلافي_منطقي"           = "logical_xor"
+
+# ── Types & constants ─────────────────────────────────────────────────────────
+"صفيف_ن"                = "ndarray"
+"نوع_بيانات"            = "dtype"
+"ناقص"                  = "nan"
+"ما_لانهايه"            = "inf"
+
+# ── Random submodule ──────────────────────────────────────────────────────────
+"عشوائيات_صفيف"         = "random"
+
+# ── File I/O ──────────────────────────────────────────────────────────────────
+"احفظ_صفيف"             = "save"
+"احمل_صفيف"             = "load"
+"احفظ_نصي"              = "savetxt"
+"احمل_نصي"              = "loadtxt"
+"من_نص_صفيف"            = "genfromtxt"
