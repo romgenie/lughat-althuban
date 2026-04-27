@@ -73,6 +73,13 @@ def main(argv: "list[str] | None" = None) -> int:
         if argv[0] in ARABIC_SUBCOMMANDS:
             return run_pip(argv[0], argv[1:])
 
+    # `ثعبان خادم` — LSP server on stdio (B-052).
+    if argv and argv[0] == "خادم":
+        from arabicpython.lsp.server import main as lsp_main
+
+        lsp_main()
+        return 0
+
     parser = argparse.ArgumentParser(
         prog="ثعبان",
         usage="ثعبان [-h] [--version] [--dict VERSION] [-c CODE] [FILE] [args ...]",
