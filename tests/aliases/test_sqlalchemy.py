@@ -45,44 +45,54 @@ class TestSqlaEngine:
 class TestSqlaSession:
     def test_session_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import Session
+
         assert قاعده_علائقيه.جلسه_قاعده is Session
 
     def test_sessionmaker_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import sessionmaker
+
         assert قاعده_علائقيه.صانع_جلسات is sessionmaker
 
     def test_scoped_session_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import scoped_session
+
         assert قاعده_علائقيه.جلسه_موجهه is scoped_session
 
 
 class TestSqlaOrmMapping:
     def test_declarative_base_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import DeclarativeBase
+
         assert قاعده_علائقيه.اساس_تعريفي is DeclarativeBase
 
     def test_mapped_column_class_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import MappedColumn
+
         assert قاعده_علائقيه.عمود_موجه is MappedColumn
 
     def test_mapped_column_factory_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import mapped_column
+
         assert قاعده_علائقيه.عرف_عمود is mapped_column
 
     def test_relationship_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import relationship
+
         assert قاعده_علائقيه.علاقه is relationship
 
     def test_backref_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import backref
+
         assert قاعده_علائقيه.علاقه_عكسيه is backref
 
     def test_mapped_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import Mapped
+
         assert قاعده_علائقيه.موجه is Mapped
 
     def test_registry_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import registry
+
         assert قاعده_علائقيه.سجل_تعيينات is registry
 
 
@@ -168,30 +178,37 @@ class TestSqlaQuery:
 class TestSqlaOrmQueryHelpers:
     def test_query_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import Query
+
         assert قاعده_علائقيه.كائن_استعلام_orm is Query
 
     def test_joinedload_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import joinedload
+
         assert قاعده_علائقيه.تحميل_مدمج is joinedload
 
     def test_subqueryload_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import subqueryload
+
         assert قاعده_علائقيه.تحميل_فرعي is subqueryload
 
     def test_selectinload_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import selectinload
+
         assert قاعده_علائقيه.تحميل_بالاختيار is selectinload
 
     def test_contains_eager_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import contains_eager
+
         assert قاعده_علائقيه.يحوي_فورا is contains_eager
 
     def test_defer_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import defer
+
         assert قاعده_علائقيه.اجل_تحميل is defer
 
     def test_undefer_alias(self, قاعده_علائقيه):
         from sqlalchemy.orm import undefer
+
         assert قاعده_علائقيه.الغ_تاجيل is undefer
 
 
@@ -212,22 +229,27 @@ class TestSqlaResults:
 class TestSqlaExceptions:
     def test_sqlalchemy_error_alias(self, قاعده_علائقيه):
         from sqlalchemy.exc import SQLAlchemyError
+
         assert قاعده_علائقيه.خطا_sqlalchemy is SQLAlchemyError
 
     def test_integrity_error_alias(self, قاعده_علائقيه):
         from sqlalchemy.exc import IntegrityError
+
         assert قاعده_علائقيه.خطا_تكامل_orm is IntegrityError
 
     def test_operational_error_alias(self, قاعده_علائقيه):
         from sqlalchemy.exc import OperationalError
+
         assert قاعده_علائقيه.خطا_تشغيلي is OperationalError
 
     def test_no_result_found_alias(self, قاعده_علائقيه):
         from sqlalchemy.exc import NoResultFound
+
         assert قاعده_علائقيه.لا_نتيجه is NoResultFound
 
     def test_multiple_results_found_alias(self, قاعده_علائقيه):
         from sqlalchemy.exc import MultipleResultsFound
+
         assert قاعده_علائقيه.نتائج_متعدده is MultipleResultsFound
 
 

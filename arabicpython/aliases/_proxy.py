@@ -234,6 +234,7 @@ class ModuleProxy:
             # Support dotted paths such as "adapters.HTTPAdapter" or "Flask.route"
             if "." in python_attr:
                 import importlib
+
                 result: Any = wrapped
                 for part in python_attr.split("."):
                     try:

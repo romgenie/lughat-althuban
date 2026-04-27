@@ -89,9 +89,7 @@ def test_no_collision_with_earlier_batches(new_mod, earlier_mod):
     new_keys = _load_keys(new_mod)
     earlier_keys = _load_keys(earlier_mod)
     overlap = new_keys & earlier_keys
-    assert not overlap, (
-        f"Collision between {new_mod} and {earlier_mod}: {overlap}"
-    )
+    assert not overlap, f"Collision between {new_mod} and {earlier_mod}: {overlap}"
 
 
 def test_no_collision_between_django_and_sqlalchemy():
