@@ -394,9 +394,9 @@ class TestNumpyFunctional:
         assert C[1, 1] == 50
 
     def test_eye_identity(self, نمباي):
-        I = نمباي.عين(3)
-        assert I.shape == (3, 3)
-        assert نمباي.الكل_صحيح(نمباي.ضرب_مصفوفات(I, I) == I)
+        eye = نمباي.عين(3)
+        assert eye.shape == (3, 3)
+        assert نمباي.الكل_صحيح(نمباي.ضرب_مصفوفات(eye, eye) == eye)
 
     def test_isnan(self, نمباي):
         a = نمباي.مصفوفه([1.0, float('nan'), 3.0])

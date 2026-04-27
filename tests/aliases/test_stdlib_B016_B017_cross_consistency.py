@@ -7,7 +7,6 @@
 #
 # Known intentional overlaps: none.
 
-import itertools
 import pathlib
 
 import pytest
