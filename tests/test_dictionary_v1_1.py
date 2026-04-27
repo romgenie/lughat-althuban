@@ -25,6 +25,7 @@ EXAMPLES_DIR = pathlib.Path(__file__).parent.parent / "examples"
 
 # ── 1. Supersetness ───────────────────────────────────────────────────────────
 
+
 def test_v1_1_is_strict_superset_of_v1():
     """Every (arabic, python) pair in v1 appears identically in v1.1."""
     v1 = load_dialect("ar-v1")
@@ -33,21 +34,21 @@ def test_v1_1_is_strict_superset_of_v1():
     # Check names (forward map)
     for arabic, python_sym in v1.names.items():
         assert arabic in v1_1.names, f"v1.1 missing v1 name key: {arabic!r}"
-        assert v1_1.names[arabic] == python_sym, (
-            f"v1.1 key {arabic!r}: v1 maps to {python_sym!r}, v1.1 maps to {v1_1.names[arabic]!r}"
-        )
+        assert (
+            v1_1.names[arabic] == python_sym
+        ), f"v1.1 key {arabic!r}: v1 maps to {python_sym!r}, v1.1 maps to {v1_1.names[arabic]!r}"
 
     # Check attributes (methods)
     for arabic, python_sym in v1.attributes.items():
         assert arabic in v1_1.attributes, f"v1.1 missing v1 attribute key: {arabic!r}"
-        assert v1_1.attributes[arabic] == python_sym, (
-            f"v1.1 attr {arabic!r}: v1={python_sym!r}, v1.1={v1_1.attributes[arabic]!r}"
-        )
+        assert (
+            v1_1.attributes[arabic] == python_sym
+        ), f"v1.1 attr {arabic!r}: v1={python_sym!r}, v1.1={v1_1.attributes[arabic]!r}"
 
     # v1.1 must have strictly more names (at least one new entry)
-    assert len(v1_1.names) > len(v1.names), (
-        f"v1.1 names ({len(v1_1.names)}) not larger than v1 names ({len(v1.names)})"
-    )
+    assert len(v1_1.names) > len(
+        v1.names
+    ), f"v1.1 names ({len(v1_1.names)}) not larger than v1 names ({len(v1.names)})"
     # Attributes unchanged
     assert len(v1_1.attributes) == len(v1.attributes)
 
@@ -58,9 +59,7 @@ def test_v1_1_new_entries_are_the_expected_one():
     v1_1 = load_dialect("ar-v1.1")
 
     new_names = {k: v for k, v in v1_1.names.items() if k not in v1.names}
-    assert new_names == {"متزامن": "async"}, (
-        f"Expected exactly {{متزامن: async}}, got {new_names}"
-    )
+    assert new_names == {"متزامن": "async"}, f"Expected exactly {{متزامن: async}}, got {new_names}"
 
 
 def test_v1_1_entry_count():
@@ -72,16 +71,18 @@ def test_v1_1_entry_count():
 
 # ── 2. Normalization round-trips ──────────────────────────────────────────────
 
+
 def test_v1_1_round_trip_normalize():
     """Every Arabic key in v1.1 round-trips through normalize_identifier."""
     d = load_dialect("ar-v1.1")
     for arabic in list(d.names) + list(d.attributes):
-        assert normalize_identifier(arabic) == arabic, (
-            f"Key {arabic!r} does not round-trip: got {normalize_identifier(arabic)!r}"
-        )
+        assert (
+            normalize_identifier(arabic) == arabic
+        ), f"Key {arabic!r} does not round-trip: got {normalize_identifier(arabic)!r}"
 
 
 # ── 3. No v1 homographs ───────────────────────────────────────────────────────
+
 
 def test_v1_1_new_entry_not_in_v1():
     """متزامن was not a v1 key (it was rejected in favour of غير_متزامن)."""
@@ -90,6 +91,7 @@ def test_v1_1_new_entry_not_in_v1():
 
 
 # ── 4. Both async spellings work in v1.1 ─────────────────────────────────────
+
 
 def test_v1_1_متزامن_translates_to_async():
     src = "متزامن دالة f(): انتظر g()\n"
@@ -107,6 +109,7 @@ def test_v1_1_غير_متزامن_still_translates_to_async():
 
 
 # ── 5. Translator default unchanged ──────────────────────────────────────────
+
 
 def test_translator_default_unchanged():
     """translate() with no dict_version uses ar-v2, not v1.1."""
@@ -127,6 +130,7 @@ def test_متزامن_unknown_under_default_dialect():
 
 
 # ── 6. Translator with dict_version ──────────────────────────────────────────
+
 
 def test_translator_with_v1_1_handles_async():
     src = "متزامن دالة f():\n    انتظر g()\n"
@@ -180,8 +184,10 @@ def test_match_soft_keyword_as_identifier():
 
 # ── 7. ValueError on conflicting kwargs ──────────────────────────────────────
 
+
 def test_translate_raises_on_both_dialect_and_dict_version():
     from arabicpython.dialect import load_dialect as _ld
+
     d = _ld("ar-v1.1")
     with pytest.raises(ValueError, match="at most one"):
         translate("x = 1\n", dialect=d, dict_version="ar-v1.1")
@@ -189,14 +195,17 @@ def test_translate_raises_on_both_dialect_and_dict_version():
 
 # ── 8. Per-file directive ─────────────────────────────────────────────────────
 
+
 def test_directive_detection():
     from arabicpython.cli import _parse_file_directive
+
     src = "#!/usr/bin/env python\n# arabicpython: dict=ar-v1.1\naطبع(1)\n"
     assert _parse_file_directive(src) == "ar-v1.1"
 
 
 def test_directive_none_when_absent():
     from arabicpython.cli import _parse_file_directive
+
     assert _parse_file_directive("اطبع(1)\n") is None
 
 
@@ -217,8 +226,7 @@ def test_directive_pins_dictionary(tmp_path):
     # We use a simpler file that just prints to verify execution.
     apy2 = tmp_path / "simple_directive.apy"
     apy2.write_text(
-        "# arabicpython: dict=ar-v1.1\n"
-        "اطبع('directive_ok')\n",
+        "# arabicpython: dict=ar-v1.1\n" "اطبع('directive_ok')\n",
         encoding="utf-8",
     )
     result = subprocess.run(
@@ -235,8 +243,7 @@ def test_directive_disagreement_is_hard_error(tmp_path):
     """Per-file directive and --dict flag must agree; mismatch → exit 1."""
     apy = tmp_path / "conflict.apy"
     apy.write_text(
-        "# arabicpython: dict=ar-v1\n"
-        "اطبع('hello')\n",
+        "# arabicpython: dict=ar-v1\n" "اطبع('hello')\n",
         encoding="utf-8",
     )
     result = subprocess.run(
@@ -252,6 +259,7 @@ def test_directive_disagreement_is_hard_error(tmp_path):
 
 
 # ── 9. CLI --dict flag ────────────────────────────────────────────────────────
+
 
 def test_cli_dict_flag_in_help():
     result = subprocess.run(
@@ -287,6 +295,7 @@ def test_cli_dict_flag_ar_v1_1(tmp_path):
 
 # ── 10. ar-v1 unchanged ───────────────────────────────────────────────────────
 
+
 def test_v1_file_unchanged():
     """ar-v1.md has not been modified (byte-stable)."""
     path = DICT_DIR / "ar-v1.md"
@@ -306,6 +315,7 @@ def test_v1_متزامن_not_in_v1():
 
 # ── 11. Demo examples exist and run ──────────────────────────────────────────
 
+
 def test_async_demo_exists():
     assert (EXAMPLES_DIR / "B40_async_demo.apy").exists()
 
@@ -316,8 +326,14 @@ def test_match_demo_exists():
 
 def test_async_demo_runs():
     result = subprocess.run(
-        [sys.executable, "-m", "arabicpython.cli", "--dict", "ar-v1.1",
-         str(EXAMPLES_DIR / "B40_async_demo.apy")],
+        [
+            sys.executable,
+            "-m",
+            "arabicpython.cli",
+            "--dict",
+            "ar-v1.1",
+            str(EXAMPLES_DIR / "B40_async_demo.apy"),
+        ],
         capture_output=True,
         text=True,
         encoding="utf-8",
@@ -328,8 +344,7 @@ def test_async_demo_runs():
 
 def test_match_demo_runs():
     result = subprocess.run(
-        [sys.executable, "-m", "arabicpython.cli",
-         str(EXAMPLES_DIR / "B40_match_demo.apy")],
+        [sys.executable, "-m", "arabicpython.cli", str(EXAMPLES_DIR / "B40_match_demo.apy")],
         capture_output=True,
         text=True,
         encoding="utf-8",

@@ -73,7 +73,7 @@ def main(argv: "list[str] | None" = None) -> int:
         metavar="VERSION",
         default=None,
         help="dictionary version to use (e.g. ar-v1.1, ar-v2). "
-             "Overrides any per-file '# arabicpython: dict=' directive.",
+        "Overrides any per-file '# arabicpython: dict=' directive.",
     )
     parser.add_argument("-c", dest="code", metavar="CODE")
     parser.add_argument("file", nargs="?", metavar="FILE")

@@ -287,10 +287,12 @@ class TestNumpyTypes:
 
     def test_nan_alias(self, نمباي):
         import math
+
         assert math.isnan(نمباي.ناقص)
 
     def test_inf_alias(self, نمباي):
         import math
+
         assert math.isinf(نمباي.ما_لانهايه)
 
     def test_random_submodule_alias(self, نمباي):
@@ -399,7 +401,7 @@ class TestNumpyFunctional:
         assert نمباي.الكل_صحيح(نمباي.ضرب_مصفوفات(eye, eye) == eye)
 
     def test_isnan(self, نمباي):
-        a = نمباي.مصفوفه([1.0, float('nan'), 3.0])
+        a = نمباي.مصفوفه([1.0, float("nan"), 3.0])
         mask = نمباي.هل_ناقص(a)
         assert list(mask) == [False, True, False]
 

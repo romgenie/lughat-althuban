@@ -105,9 +105,7 @@ class TestSubprocessProxy:
         """احضر_مخرجات returns the command's stdout as bytes."""
         import sys
 
-        out = عملية_فرعية.احضر_مخرجات(
-            [sys.executable, "-c", "print('test')"]
-        )
+        out = عملية_فرعية.احضر_مخرجات([sys.executable, "-c", "print('test')"])
         assert b"test" in out
 
     def test_called_process_error_raised(self, عملية_فرعية):
@@ -115,9 +113,7 @@ class TestSubprocessProxy:
         import sys
 
         with pytest.raises(عملية_فرعية.خطا_استدعاء_عمليه):
-            عملية_فرعية.احضر_مخرجات(
-                [sys.executable, "-c", "import sys; sys.exit(1)"]
-            )
+            عملية_فرعية.احضر_مخرجات([sys.executable, "-c", "import sys; sys.exit(1)"])
 
     def test_pipe_captures_stdout(self, عملية_فرعية):
         """انبوب sentinel works with Popen to capture stdout."""
@@ -134,13 +130,9 @@ class TestSubprocessProxy:
         """Result of شغل_امر is an instance of عمليه_مكتمله."""
         import sys
 
-        result = عملية_فرعية.شغل_امر(
-            [sys.executable, "-c", "pass"], capture_output=True
-        )
+        result = عملية_فرعية.شغل_امر([sys.executable, "-c", "pass"], capture_output=True)
         assert isinstance(result, عملية_فرعية.عمليه_مكتمله)
 
     def test_timeout_expired_is_subclass(self, عملية_فرعية):
         """انتهاء_مهله_عمليه is a subclass of خطا_عمليه_فرعيه."""
-        assert issubclass(
-            عملية_فرعية.انتهاء_مهله_عمليه, عملية_فرعية.خطا_عمليه_فرعيه
-        )
+        assert issubclass(عملية_فرعية.انتهاء_مهله_عمليه, عملية_فرعية.خطا_عمليه_فرعيه)

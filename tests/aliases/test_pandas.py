@@ -208,9 +208,7 @@ class TestPandasFunctional:
         assert hasattr(cats, "cat")  # it's a Categorical
 
     def test_pivot_table(self, بانداس):
-        df = بانداس.اطار_بيانات(
-            {"dept": ["A", "A", "B", "B"], "sales": [10, 20, 30, 40]}
-        )
+        df = بانداس.اطار_بيانات({"dept": ["A", "A", "B", "B"], "sales": [10, 20, 30, 40]})
         pt = بانداس.جدول_محوري(df, values="sales", index="dept", aggfunc="sum")
         assert pt.loc["A", "sales"] == 30
         assert pt.loc["B", "sales"] == 70
