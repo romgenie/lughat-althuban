@@ -136,6 +136,11 @@ _EXCLUDED = {
     "B10_flask_hello.apy",  # starts a blocking HTTP server
     "B30_filesystem_walk.apy",  # requires a CLI argument (directory path)
     "B32_datetime_math.apy",  # output contains current date/time — non-deterministic
+    "B55_formatter_demo.apy",  # output contains repr strings — snapshot-sensitive
+    "B57_seaborn_demo.apy",  # requires seaborn + matplotlib; non-deterministic palette
+    "B58_scipy_demo.apy",  # requires scipy + numpy; floating-point output varies
+    "B59_aiohttp_demo.apy",  # makes live HTTP calls; requires @pytest.mark.network
+    "اختبار_نموذجي.apy",  # pytest test file — requires pytest context to run
 }
 
 _EXAMPLE_PARAMS = sorted(p for p in EXAMPLES_DIR.glob("*.apy") if p.name not in _EXCLUDED)

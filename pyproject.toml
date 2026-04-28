@@ -40,13 +40,27 @@ dev = [
     "sqlalchemy>=2.0",
     "Pillow>=10.0",
     "fastapi>=0.100",
+    "seaborn>=0.13",
+    "scipy>=1.12",
+    "aiohttp>=3.9",
+]
+kernel = [
+    "ipykernel>=6.29",
+    "jupyter_client>=8.6",
+]
+all = [
+    "apython[dev]",
+    "apython[kernel]",
 ]
 
 [project.scripts]
 "ثعبان" = "arabicpython.cli:main"
 
+[project.entry-points."pytest11"]
+apy = "arabicpython.pytest_plugin"
+
 [tool.setuptools.packages.find]
-include = ["arabicpython*"]
+include = ["arabicpython*", "arabicpython_kernel*"]
 
 [tool.ruff]
 line-length = 100

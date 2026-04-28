@@ -1,0 +1,122 @@
+{
+  "scopeName": "source.apy",
+  "fileTypes": [
+    "apy"
+  ],
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#string-triple-double"
+    },
+    {
+      "include": "#string-triple-single"
+    },
+    {
+      "include": "#string-double"
+    },
+    {
+      "include": "#string-single"
+    },
+    {
+      "include": "#builtin-exception"
+    },
+    {
+      "include": "#builtin-type"
+    },
+    {
+      "include": "#builtin-function"
+    },
+    {
+      "include": "#keyword"
+    },
+    {
+      "include": "#literal"
+    },
+    {
+      "include": "#number"
+    },
+    {
+      "include": "#operator"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.number-sign.apy",
+      "match": "#.*$"
+    },
+    "keyword": {
+      "name": "keyword.control.apy",
+      "match": "(?<![ء-يa-zA-Z_٠-٩0-9])(غير_محلي|إلا_إذا|استيراد|لا_شيء|أخيرًا|إرجاع|إثارة|عالمي|لامدا|تأكيد|بينما|منتج|صحيح|وإلا|ناتج|اكسر|تابع|حاول|دالة|احذف|مرر|لكل|إلا|خطأ|ليس|إذا|صنف|كـ|أو|في|مع|من|و)(?![ء-يa-zA-Z_٠-٩0-9])"
+    },
+    "literal": {
+      "name": "constant.language.apy",
+      "match": "(?<![ء-يa-zA-Z_٠-٩0-9])(صحيح|خطأ|لا_شيء|True|False|None)(?![ء-يa-zA-Z_٠-٩0-9])"
+    },
+    "builtin-function": {
+      "name": "support.function.builtin.apy",
+      "match": "(?<![ء-يa-zA-Z_٠-٩0-9])(enumerate|reversed|callable|مجموعة|filter|sorted|قاموس|print|قائمة|range|float|input|مدخل|eval|list|dict|exec|bool|نطاق|hash|اطبع|type|help|str|map|min|abs|طول|len|set|نوع|sum|max|int|zip|id)(?![ء-يa-zA-Z_٠-٩0-9])"
+    },
+    "builtin-type": {
+      "name": "support.type.apy",
+      "match": "(?<![ء-يa-zA-Z_٠-٩0-9])(bytearray|object|tuple|slice|bytes|float|bool|list|type|dict|str|set|int)(?![ء-يa-zA-Z_٠-٩0-9])"
+    },
+    "builtin-exception": {
+      "name": "support.class.exception.apy",
+      "match": "(?<![ء-يa-zA-Z_٠-٩0-9])(NotImplementedError|ModuleNotFoundError|KeyboardInterrupt|ZeroDivisionError|FileNotFoundError|PermissionError|AttributeError|RecursionError|StopIteration|OverflowError|BaseException|RuntimeError|MemoryError|ImportError|SystemExit|IndexError|ValueError|Exception|TypeError|خطأ_مفتاح|NameError|KeyError|خطأ_قيمة|خطأ_اسم|OSError|IOError|خطأ_عام|خطأ_نوع)(?![ء-يa-zA-Z_٠-٩0-9])"
+    },
+    "number": {
+      "name": "constant.numeric.apy",
+      "match": "(?<!\\w)([٠-٩]+\\.?[٠-٩]*|[0-9]+\\.?[0-9]*)(?!\\w)"
+    },
+    "operator": {
+      "name": "keyword.operator.apy",
+      "match": "[+\\-*/%&|^~<>=!@]+|//|<<|>>|\\*\\*"
+    },
+    "string-triple-double": {
+      "name": "string.quoted.triple.double.apy",
+      "begin": "\"\"\"",
+      "end": "\"\"\"",
+      "patterns": [
+        {
+          "include": "#string-escape"
+        }
+      ]
+    },
+    "string-triple-single": {
+      "name": "string.quoted.triple.single.apy",
+      "begin": "'''",
+      "end": "'''",
+      "patterns": [
+        {
+          "include": "#string-escape"
+        }
+      ]
+    },
+    "string-double": {
+      "name": "string.quoted.double.apy",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "include": "#string-escape"
+        }
+      ]
+    },
+    "string-single": {
+      "name": "string.quoted.single.apy",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "include": "#string-escape"
+        }
+      ]
+    },
+    "string-escape": {
+      "name": "constant.character.escape.apy",
+      "match": "\\."
+    }
+  }
+}

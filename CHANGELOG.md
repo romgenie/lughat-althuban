@@ -7,6 +7,68 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Tooling & third-party aliases (B-053 through B-059)
+
+Test suite: **2386 passing, 21 skipped**.
+
+#### B-059 — aiohttp (`طلبات_غير_متزامنه`)
+
+22 entries covering `ClientSession` (`جلسه_غير_متزامنه`), `ClientTimeout` (`مهله_عميل`),
+`TCPConnector`, `BasicAuth`, `FormData`, `StreamReader`, web-server helpers
+(`web.Application`, `web.run_app`, `web.Response`, `web.json_response`),
+`WebSocketResponse`, and all client error/exception classes.
+Demo: `examples/B59_aiohttp_demo.apy`.
+
+#### B-058 — scipy (`علوم_حسابيه`)
+
+17 entries mapping scipy's major submodule namespaces: `احصاء_متقدم` (stats),
+`تحسين` (optimize), `تكامل` (integrate), `جبر_خطي` (linalg), `استيفاء`
+(interpolate), `تحويل_فوريه` (fft), `معالجه_اشارات` (signal), `مصفوفات_مبعثره`
+(sparse), `هندسه_فضائيه` (spatial), `دالات_خاصه` (special), `ثوابت` (constants).
+Demo: `examples/B58_scipy_demo.apy`.
+
+#### B-057 — seaborn (`رسوم_احصائيه`)
+
+38 entries: full coverage of relational (`خط_بياني`, `مخطط_نقاط`), distribution
+(`توزيع_بيانات`, `كثافه_احتماليه`, `توزيع_تراكمي`), categorical (`مخطط_شريطي`,
+`مخطط_صندوقي`, `مخطط_كمان`, `مخطط_سرب`), matrix (`خريطه_حراره`), multi-plot grids,
+theming (`ضبط_موضوع`, `احضر_لوحه`), and dataset helpers (`حمل_بيانات`).
+Demo: `examples/B57_seaborn_demo.apy`.
+
+#### B-056 — Linter (`ثعبان راجع`)
+
+`arabicpython/linter.py` — static analysis for `.apy` files.
+Codes: W001 (line length), W002 (trailing whitespace), W003 (tab indent),
+W004 (mixed Arabic/Latin identifier), E001 (ar-v1 keyword in ar-v2 file),
+I001 (no module intro). CLI: `ثعبان راجع [--select CODES] [--no-info] FILE…`.
+23 tests. Demo: `examples/B56_linter_demo.apy`.
+
+#### B-055 — Formatter (`ثعبان نسّق`)
+
+`arabicpython/formatter.py` — deterministic source formatter for `.apy` files.
+Fixes: tab→space indentation, trailing whitespace, blank-line collapse (≤2),
+comment spacing (`#comment` → `# comment`), comma spacing.
+CLI: `ثعبان نسّق [--check] FILE…`. Idempotent. 22 tests.
+Demo: `examples/B55_formatter_demo.apy`.
+
+#### B-054 — Jupyter Kernel
+
+`arabicpython_kernel/` package — `ArabicPythonKernel` extends `IPythonKernel`.
+Translates Arabic Python in `do_execute` before execution; Arabic tab-completion
+for keywords and alias module names; `__main__.py` installer
+(`python -m arabicpython_kernel install`). Optional dep group: `pip install apython[kernel]`.
+17 structural tests (no live Jupyter required). Language: `apy`, extension: `.apy`.
+
+#### B-053 — VSCode Extension
+
+`editors/vscode/` — full VSCode language extension for `.apy` files.
+Ships: `package.json` (language contribution, grammar, LSP config),
+`extension.js` (LanguageClient wrapping `ثعبان خادم`, status-bar item),
+`language-config.json` (brackets, Arabic wordPattern, indentation rules),
+`syntaxes/apy.tmLanguage.json` (TextMate grammar — 12 repository rules,
+500+ Arabic keywords/builtins). Generator: `tools/generate_vscode_grammar.py`.
+51 structural tests.
+
 ### Phase B — stdlib aliases (B-030 through B-038)
 
 All modules import via Arabic names and expose curated Arabic attribute aliases.

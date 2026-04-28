@@ -80,6 +80,18 @@ def main(argv: "list[str] | None" = None) -> int:
         lsp_main()
         return 0
 
+    # `ثعبان نسّق [--check] [FILE ...]` — formatter (B-055).
+    if argv and argv[0] == "نسّق":
+        from arabicpython.formatter import main as fmt_main
+
+        return fmt_main(argv[1:])
+
+    # `ثعبان راجع [FILE ...]` — linter (B-056).
+    if argv and argv[0] == "راجع":
+        from arabicpython.linter import main as lint_main
+
+        return lint_main(argv[1:])
+
     parser = argparse.ArgumentParser(
         prog="ثعبان",
         usage="ثعبان [-h] [--version] [--dict VERSION] [-c CODE] [FILE] [args ...]",

@@ -1,0 +1,71 @@
+# arabicpython/aliases/seaborn.toml
+# B-057: Arabic aliases for the seaborn statistical visualisation library.
+#
+# Collision notes:
+#   رسم_خطي — matplotlib uses رسم_خطي; seaborn uses خط_بياني instead.
+#   نقاط — matplotlib uses نقاط_بيانيه; seaborn uses مخطط_نقاط.
+#   توزيع — statistics uses توزيع not directly; seaborn uses توزيع_بيانات.
+
+[meta]
+arabic_name    = "رسوم_احصائيه"
+python_module  = "seaborn"
+dict_version   = "ar-v1"
+schema_version = 1
+maintainer     = "—"
+
+[entries]
+# ── Figure-level plots ───────────────────────────────────────────────────────
+"شبكه_علاقات"       = "relplot"
+"شبكه_توزيع"        = "displot"
+"شبكه_فئات"         = "catplot"
+"شبكه_زوجيه"        = "pairplot"
+"خريطه_حراره_شبكه"  = "clustermap"
+
+# ── Relational plots ─────────────────────────────────────────────────────────
+"خط_بياني"          = "lineplot"
+"مخطط_نقاط"         = "scatterplot"
+
+# ── Distribution plots ───────────────────────────────────────────────────────
+"توزيع_بيانات"      = "histplot"
+"كثافه_احتماليه"    = "kdeplot"
+"توزيع_تراكمي"      = "ecdfplot"
+"توزيع_احادي"       = "rugplot"
+
+# ── Categorical plots ────────────────────────────────────────────────────────
+"مخطط_شريطي"        = "barplot"
+"مخطط_عداد"         = "countplot"
+"مخطط_نقطي"         = "pointplot"
+"مخطط_صندوقي"       = "boxplot"
+"مخطط_كمان"         = "violinplot"
+"مخطط_شريطي_مكدس"   = "boxenplot"
+"مخطط_تفصيلي"       = "stripplot"
+"مخطط_سرب"          = "swarmplot"
+
+# ── Regression plots ─────────────────────────────────────────────────────────
+"مخطط_انحدار"       = "lmplot"
+"خط_انحدار"         = "regplot"
+"بقايا_انحدار"      = "residplot"
+
+# ── Matrix plots ─────────────────────────────────────────────────────────────
+"خريطه_حراره"       = "heatmap"
+
+# ── Multi-plot grids ─────────────────────────────────────────────────────────
+"شبكه_محاور"        = "FacetGrid"
+"شبكه_زوج"          = "PairGrid"
+"شبكه_مشترك"        = "JointGrid"
+"مخطط_مشترك"        = "jointplot"
+
+# ── Theming ──────────────────────────────────────────────────────────────────
+"ضبط_موضوع"         = "set_theme"
+"ضبط_نمط"           = "set_style"
+"ضبط_سياق"          = "set_context"
+"ضبط_لوحه_الوان"    = "set_palette"
+"احضر_لوحه"         = "color_palette"
+"لوحه_تدرج"         = "diverging_palette"
+"لوحه_مستمره"       = "cubehelix_palette"
+"لوحه_فاتحه"        = "light_palette"
+"لوحه_داكنه"        = "dark_palette"
+
+# ── Data loading ─────────────────────────────────────────────────────────────
+"حمل_بيانات"        = "load_dataset"
+"بيانات_متاحه"      = "get_dataset_names"

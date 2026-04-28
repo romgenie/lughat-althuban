@@ -1,0 +1,62 @@
+# arabicpython/aliases/scipy.toml
+# B-058: Arabic aliases for the scipy scientific computing library.
+#
+# scipy is a namespace package; most functions live in submodules.
+# This TOML maps the top-level `scipy` proxy.  Submodule proxies
+# (scipy_stats, scipy_optimize, ...) would be separate TOMLs.
+#
+# Collision notes:
+#   جذر  — math uses جذر; scipy uses جذر_معادله for root-finding.
+#   انحراف — statistics; scipy uses انحراف_احصائي.
+#   مجموع — builtins; مجموع_متراكم used for cumsum.
+
+[meta]
+arabic_name    = "علوم_حسابيه"
+python_module  = "scipy"
+dict_version   = "ar-v1"
+schema_version = 1
+maintainer     = "—"
+
+[entries]
+# ── Top-level ────────────────────────────────────────────────────────────────
+"نسخه_علوم"         = "version"
+"اختبر_تثبيت"       = "test"
+
+# ── scipy.special ─────────────────────────────────────────────────────────────
+"دالات_خاصه"        = "special"
+
+# ── scipy.linalg ─────────────────────────────────────────────────────────────
+"جبر_خطي_علمي"      = "linalg"
+
+# ── scipy.optimize ────────────────────────────────────────────────────────────
+"تحسين"             = "optimize"
+
+# ── scipy.integrate ───────────────────────────────────────────────────────────
+"تكامل"             = "integrate"
+
+# ── scipy.interpolate ────────────────────────────────────────────────────────
+"استيفاء"           = "interpolate"
+
+# ── scipy.fft ────────────────────────────────────────────────────────────────
+"تحويل_فوريه"       = "fft"
+
+# ── scipy.signal ─────────────────────────────────────────────────────────────
+"معالجه_اشارات"     = "signal"
+
+# ── scipy.sparse ─────────────────────────────────────────────────────────────
+"مصفوفات_مبعثره"    = "sparse"
+
+# ── scipy.spatial ────────────────────────────────────────────────────────────
+"هندسه_فضائيه"      = "spatial"
+
+# ── scipy.stats ──────────────────────────────────────────────────────────────
+"احصاء_متقدم"       = "stats"
+
+# ── scipy.io ─────────────────────────────────────────────────────────────────
+"ادخال_اخراج"       = "io"
+
+# ── scipy.constants ──────────────────────────────────────────────────────────
+"ثوابت"             = "constants"
+"ثابت_بلانك"        = "constants.h"
+"سرعه_الضوء"        = "constants.c"
+"ثابت_بولتزمان"     = "constants.k"

@@ -1,6 +1,6 @@
 # Phase B Roadmap
 
-**Status as of 2026-04-27:** Phase A complete. Phase B well underway — all stdlib batches (B-030–B-039) merged, all top-10 SDK packets merged (Flask, requests, requests-extras, Django, SQLAlchemy, numpy, pandas, Pillow, pytest, FastAPI), and traceback expansion (B-041) merged. Active work: tooling layer (B-050–B-054), tutorial translation (B-060), and error-message coverage (B-061).
+**Status as of 2026-04-28:** Phase A complete. Phase B well underway — all stdlib batches (B-030–B-039) merged, all top-10 SDK packets merged, traceback expansion (B-041) merged, full tooling layer merged (B-050–B-056 + B-053/B-054 VSCode/Jupyter), and third-party aliases for seaborn, scipy, aiohttp (B-057–B-059) merged. Test suite: **2386 passing**. Open: tutorial translation (B-060), error-message coverage (B-061).
 
 This file is the **single visible map** of what Phase B contains, what's open for contribution, and what depends on what. To pick up work, see [CONTRIBUTING.md](CONTRIBUTING.md). To understand *why* Phase B is structured this way, see [decisions/0008-phase-b-charter.md](decisions/0008-phase-b-charter.md).
 
@@ -87,11 +87,16 @@ These ship in order of dependency. All are active targets — no sponsor gate.
 
 | ID | Title | Depends on | Size | Status | Owner | First-pickup? |
 |---|---|---|---|---|---|---|
-| B-050 | tooling-pip-wrapper — Arabic CLI for `pip install` / `pip list` / `pip uninstall` | B-001 | M | drafted | — | **yes** |
-| B-051 | tooling-pytest-wrapper — Arabic test runner (`ثعبان اختبر`) | B-015 | S | drafted | — | **yes** |
-| B-052 | lsp-server-v1 — Language server (hover, go-to-def, diagnostics for `.apy`) | — | L | drafted | — | no (infrastructure) |
-| B-053 | vscode-extension-v1 — Syntax highlight, completion, error squiggles | B-052 | M | drafted | — | no |
-| B-054 | jupyter-kernel-v1 — `.apy` cells in Jupyter notebooks | — | L | drafted | — | no |
+| B-050 | tooling-pip-wrapper — Arabic CLI for `pip install` / `pip list` / `pip uninstall` | B-001 | M | merged | — | **yes** |
+| B-051 | tooling-pytest-wrapper — Arabic test runner (`ثعبان اختبر`) | B-015 | S | merged | — | **yes** |
+| B-052 | lsp-server-v1 — Language server (hover, go-to-def, diagnostics for `.apy`) | — | L | merged | — | no (infrastructure) |
+| B-053 | vscode-extension-v1 — Syntax highlight, completion, error squiggles | B-052 | M | merged | — | no |
+| B-054 | jupyter-kernel-v1 — `.apy` cells in Jupyter notebooks | — | L | merged | — | no |
+| B-055 | tooling-formatter — `ثعبان نسّق` source formatter | — | S | merged | — | **yes** |
+| B-056 | tooling-linter — `ثعبان راجع` static linter | — | S | merged | — | **yes** |
+| B-057 | aliases-seaborn-v1 — `رسوم_احصائيه` (38 entries) | B-001 | S | merged | — | **yes** |
+| B-058 | aliases-scipy-v1 — `علوم_حسابيه` (17 entries, submodule map) | B-001 | S | merged | — | **yes** |
+| B-059 | aliases-aiohttp-v1 — `طلبات_غير_متزامنه` (22 entries) | B-001 | S | merged | — | **yes** |
 
 **Pickup advice:** B-050 and B-051 are the smallest and most self-contained. B-052 is the prerequisite for editor support; claim it only with LSP experience.
 

@@ -1,0 +1,79 @@
+{
+  "name": "apython",
+  "displayName": "لغة الثعبان (apython)",
+  "description": "Arabic Python dialect — syntax highlighting, hover, diagnostics, completion for .apy files",
+  "version": "0.1.0",
+  "publisher": "apython-contributors",
+  "license": "Apache-2.0",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "keywords": [
+    "arabic",
+    "python",
+    "apython",
+    "apy",
+    "dialect"
+  ],
+  "activationEvents": [
+    "onLanguage:apy"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "apy",
+        "aliases": [
+          "لغة الثعبان",
+          "apython",
+          "apy"
+        ],
+        "extensions": [
+          ".apy"
+        ],
+        "configuration": "./language-config.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "apy",
+        "scopeName": "source.apy",
+        "path": "./syntaxes/apy.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "apython",
+      "properties": {
+        "apython.serverPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the ثعبان executable. Leave empty to use the ثعبان found on PATH."
+        },
+        "apython.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Trace LSP communication between VS Code and ثعبان-خادم."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0"
+  },
+  "scripts": {
+    "vscode:prepublish": "echo 'No build step required'",
+    "package": "vsce package"
+  }
+}

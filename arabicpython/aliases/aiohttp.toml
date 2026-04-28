@@ -1,0 +1,51 @@
+# arabicpython/aliases/aiohttp.toml
+# B-059: Arabic aliases for the aiohttp async HTTP library.
+#
+# Collision notes:
+#   احصل / احذف / ارسل — requests.toml uses these for sync HTTP verbs.
+#     aiohttp async versions use طلب_احصل / طلب_احذف / طلب_ارسل.
+#   جلسه — requests uses جلسه; aiohttp async session uses جلسه_غير_متزامنه.
+
+[meta]
+arabic_name    = "طلبات_غير_متزامنه"
+python_module  = "aiohttp"
+dict_version   = "ar-v1"
+schema_version = 1
+maintainer     = "—"
+
+[entries]
+# ── Client ───────────────────────────────────────────────────────────────────
+"جلسه_غير_متزامنه"  = "ClientSession"
+"خطا_عميل"          = "ClientError"
+"خطا_استجابه"       = "ClientResponseError"
+"خطا_اتصال_غير_متزامن" = "ClientConnectionError"
+"مهله_عميل"         = "ClientTimeout"
+"اعدادات_اتصال"     = "TCPConnector"
+"ترميز_عنوان"       = "BasicAuth"
+
+# ── Request helpers ──────────────────────────────────────────────────────────
+"طلب_احصل"          = "request"
+"استجابه_عميل"      = "ClientResponse"
+
+# ── Web server ───────────────────────────────────────────────────────────────
+"تطبيق_ويب"         = "web.Application"
+"تشغيل_خادم"        = "web.run_app"
+"طلب_ويب"           = "web.Request"
+"استجابه_ويب"       = "web.Response"
+"استجابه_جيسون"     = "web.json_response"
+"مسارات_ويب"        = "web.RouteTableDef"
+"خادم_ويب"          = "web"
+
+# ── WebSocket ────────────────────────────────────────────────────────────────
+"مقبس_ويب_عميل"     = "ClientWebSocketResponse"
+"مقبس_ويب_خادم"     = "web.WebSocketResponse"
+
+# ── Streams ──────────────────────────────────────────────────────────────────
+"قارئ_مجري"         = "StreamReader"
+
+# ── Multipart ────────────────────────────────────────────────────────────────
+"بيانات_متعدده"     = "FormData"
+
+# ── Helpers ──────────────────────────────────────────────────────────────────
+"جيب_فينغر"         = "Fingerprint"
+"رمز_حاله"          = "hdrs"
