@@ -1,5 +1,7 @@
 # Getting started with apython
 
+> Arabic version: [tutorial-ar.md](tutorial-ar.md)
+
 This tutorial walks through the apython dialect from "hello world" to importing
 your own modules. Every code sample is a real `.apy` file you can paste into a
 buffer and run; most of them mirror the seven progressive demos in
